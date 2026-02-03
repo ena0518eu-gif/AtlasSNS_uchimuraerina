@@ -3,14 +3,61 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use App\Models\Post; // Postモデルをインポート
+use Illuminate\Support\Facades\Auth;
 
 class FollowsController extends Controller
 {
-    //
-    public function followList(){
-        return view('follows.followList');
+    // フォロー一覧表示
+    public function followList()
+    {
+        // ログインユーザーの情報取得
+        $user = Auth::user();
+
+        // ユーザーがフォローしているユーザーの投稿を取得
+        $followedUsersPosts = $user->follows()->with('posts')->get();  // 投稿も取得
+
+        // ビューに渡す
+        return view('follows.followList', compact('followedUsersPosts'));
     }
-    public function followerList(){
-        return view('follows.followerList');
+
+    // フォロワー一覧表示
+    public function followerList()
+    {
+        // ログインユーザーの情報取得
+        $user = Auth::user();
+
+        // ユーザーをフォローしているユーザー＋投稿を取得
+        $followersPosts = $user->followers()->with('posts')->get();  // 投稿も取得
+
+        // ビューに渡す
+        return view('follows.followerList', compact('followersPosts'));
+    }
+
+    // フォローする処理
+    public function store($userId)
+    {
+        $user = Auth::user();
+
+        // すでにフォローしていない場合にフォローする
+        if (!$user->follows()->where('followed_id', $userId)->exists()) {
+            $user->follows()->attach($userId); // 中間テーブルにレコードを追加
+        }
+
+        return redirect()->back(); // フォロー後、前のページに戻る
+    }
+
+    // フォロー解除処理
+    public function destroy($userId)
+    {
+        $user = Auth::user();
+
+        // フォローしている場合は解除する
+        if ($user->follows()->where('followed_id', $userId)->exists()) {
+            $user->follows()->detach($userId); // 中間テーブルからレコードを削除
+        }
+
+        return redirect()->back(); // フォロー解除後、前のページに戻る
     }
 }

@@ -1,19 +1,45 @@
-<x-logout-layout>
+@extends('layouts.logout')
 
-  <!-- 適切なURLを入力してください -->
-  {!! Form::open(['url' => '〇〇']) !!}
+@section('content')
 
-  <p>AtlasSNSへようこそ</p>
+<div class="login-wrapper">
 
-  {{ Form::label('email') }}
-  {{ Form::text('email',null,['class' => 'input']) }}
-  {{ Form::label('password') }}
-  {{ Form::password('password',['class' => 'input']) }}
+  <!-- ロゴエリア -->
+  <div class="login-logo">
+    <img src="{{ asset('images/atlas.png') }}" class="atlas-logo">
+    <p class="atlas-sub">Social Network Service</p>
+  </div>
 
-  {{ Form::submit('ログイン') }}
+  <!-- ログインボックス -->
+  <div class="login-box">
 
-  <p><a href="register">新規ユーザーの方はこちら</a></p>
+    <p class="login-title">AtlasSNSへようこそ</p>
 
-  {!! Form::close() !!}
+    <form method="POST" action="{{ route('login') }}">
+      @csrf
 
-</x-logout-layout>
+      <div class="form-group">
+        <label>メールアドレス</label>
+        <input class="login-input" type="email" name="email">
+      </div>
+
+      <div class="form-group">
+        <label>パスワード</label>
+        <input class="login-input" type="password" name="password">
+      </div>
+
+      <button class="login-btn" type="submit">
+        ログイン
+      </button>
+
+    </form>
+
+    <a class="register-link" href="/register">
+      新規ユーザーの方はこちら
+    </a>
+
+  </div>
+
+</div>
+
+@endsection

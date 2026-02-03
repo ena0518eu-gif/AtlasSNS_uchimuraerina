@@ -1,10 +1,261 @@
-@charset "UTF-8";
+@charset "utf-8";
 
-html{
-    height: 100%;
+/* =========================
+  共通リセット
+========================= */
+
+* {
+    box-sizing: border-box;
 }
 
-body{
-    height: 100%;
-    background: #186AC9;
+/* =========================
+  認証画面 全体
+========================= */
+
+.auth-body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+
+    font-family: sans-serif;
+
+    background: linear-gradient(to bottom,
+            #1e88e5 0%,
+            #4fc3f7 60%,
+            #fdd835 100%);
+}
+
+/* =========================
+  画面中央ラッパー（レイアウト制御）
+========================= */
+
+.auth-wrapper {
+    width: 100%;
+    min-height: 100vh;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+  ログイン全体ラッパー
+========================= */
+
+.login-wrapper {
+    width: 100%;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* =========================
+  ロゴエリア
+========================= */
+
+.login-logo {
+    text-align: center;
+    margin-bottom: 24px;
+}
+
+.atlas-logo {
+    width: 200px;
+    height: auto;
+}
+
+.atlas-sub {
+    margin-top: 4px;
+    color: #fff;
+    font-size: 14px;
+}
+
+/* =========================
+  ログインカード
+========================= */
+
+.login-box {
+    width: 360px;
+    padding: 28px 30px;
+
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    text-align: center;
+    color: #fff;
+
+    /* XD寄せ影 */
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* =========================
+  タイトル
+========================= */
+
+.login-title {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 18px;
+}
+
+/* =========================
+  フォーム
+========================= */
+
+.form-group {
+    margin-bottom: 14px;
+}
+
+.form-group label {
+    display: block;
+    text-align: left;
+    font-size: 12px;
+    margin-bottom: 4px;
+}
+
+.login-input {
+    width: 100%;
+    height: 40px;
+    padding: 8px 12px;
+
+    border: none;
+    border-radius: 6px;
+    outline: none;
+
+    font-size: 14px;
+    background: #fff;
+}
+
+/* フォーカス時 */
+
+.login-input:focus {
+    box-shadow: 0 0 0 2px rgba(33, 150, 243, 0.3);
+}
+
+/* =========================
+  ボタン
+========================= */
+
+.login-btn {
+    margin: 14px auto 0;
+
+    display: block;
+    width: 130px;
+    padding: 9px 0;
+
+    background: #e53935;
+    color: #fff;
+
+    border: none;
+    border-radius: 24px;
+
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.login-btn:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+  下リンク
+========================= */
+
+.register-link {
+    display: block;
+    margin-top: 14px;
+
+    color: #fff;
+    font-size: 13px;
+    text-decoration: none;
+}
+
+.register-link:hover {
+    text-decoration: underline;
+}
+
+/* =========================
+  エラーメッセージ
+========================= */
+
+.mt-2 {
+    margin-top: 6px;
+    color: #ffdada;
+    font-size: 11px;
+}
+
+/* =========================
+  登録完了画面（added）
+========================= */
+
+.added-container {
+    width: 360px;
+    padding: 28px 30px;
+
+    background: rgba(0, 0, 0, 0.25);
+    border-radius: 12px;
+
+    text-align: center;
+    color: #fff;
+
+    box-shadow: 0 12px 24px rgba(0, 0, 0, 0.18);
+}
+
+/* 登録完了タイトル */
+
+.added-title {
+    font-size: 14px;
+    color: #b7ff00;
+    margin-bottom: 10px;
+}
+
+/* ユーザー名 */
+
+.added-username {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 12px;
+}
+
+/* メッセージ */
+
+.added-message {
+    font-size: 13px;
+    line-height: 1.6;
+}
+
+/* ログイン画面ボタン */
+
+.added-btn {
+    display: inline-block;
+    margin-top: 18px;
+
+    padding: 10px 24px;
+
+    background: #ff4b5c;
+    color: #fff;
+
+    text-decoration: none;
+    border-radius: 20px;
+
+    font-size: 13px;
+}
+
+.added-btn:hover {
+    opacity: 0.85;
+}
+
+/* =========================
+  ログイン・ログアウト ロゴ
+========================= */
+
+.auth-logo {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.auth-logo img {
+    width: 150px;
+    height: auto;
 }

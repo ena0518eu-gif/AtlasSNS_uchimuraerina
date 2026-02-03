@@ -1,10 +1,37 @@
-<x-logout-layout>
-  <div id="clear">
-    <p>〇〇さん</p>
-    <p>ようこそ！AtlasSNSへ！</p>
-    <p>ユーザー登録が完了しました。</p>
-    <p>早速ログインをしてみましょう。</p>
+@extends('layouts.logout')
 
-    <p class="btn"><a href="login">ログイン画面へ</a></p>
+@section('content')
+
+<div class="login-wrapper">
+
+  <!-- ロゴ -->
+  <div class="login-logo">
+    <img src="{{ asset('images/atlas.png') }}" class="atlas-logo">
+    <p class="atlas-sub">Social Network Service</p>
   </div>
-</x-logout-layout>
+
+  <!-- 登録完了カード -->
+  <div class="added-container">
+
+    <!-- ユーザー名 -->
+    <p class="added-username">
+      {{ session('username') }}さん
+    </p>
+
+    <!-- メッセージ -->
+    <p class="added-message">
+      ようこそ！AtlasSNSへ<br>
+      ユーザー登録が完了いたしました。<br>
+      早速ログインをしてみましょう！
+    </p>
+
+    <!-- ログインボタン -->
+    <a href="{{ route('login') }}" class="added-btn">
+      ログイン画面へ
+    </a>
+
+  </div>
+
+</div>
+
+@endsection

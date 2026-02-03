@@ -1,26 +1,56 @@
-<x-logout-layout>
-    <!-- 適切なURLを入力してください -->
-{!! Form::open(['url' => '〇〇']) !!}
+@extends('layouts.logout')
 
-<h2>新規ユーザー登録</h2>
+@section('content')
 
-{{ Form::label('ユーザー名') }}
-{{ Form::text('username',null,['class' => 'input']) }}
+<!-- 画面中央制御ラッパー -->
+<div class="login-wrapper">
 
-{{ Form::label('メールアドレス') }}
-{{ Form::email('email',null,['class' => 'input']) }}
+  <!-- ロゴエリア -->
+  <div class="login-logo">
+    <img src="{{ asset('images/atlas.png') }}" class="atlas-logo">
+    <p class="atlas-sub">Social Network Service</p>
+  </div>
 
-{{ Form::label('パスワード') }}
-{{ Form::text('password',null,['class' => 'input']) }}
+  <!-- 登録カード -->
+  <div class="login-box">
 
-{{ Form::label('パスワード確認') }}
-{{ Form::text('password_confirmation',null,['class' => 'input']) }}
+    <p class="login-title">新規ユーザー登録</p>
 
-{{ Form::submit('登録') }}
+    <form method="POST" action="/register">
+      @csrf
 
-<p><a href="login">ログイン画面へ戻る</a></p>
+      <div class="form-group">
+        <label>ユーザー名</label>
+        <input class="login-input" type="text" name="username">
+      </div>
 
-{!! Form::close() !!}
+      <div class="form-group">
+        <label>メールアドレス</label>
+        <input class="login-input" type="email" name="email">
+      </div>
 
+      <div class="form-group">
+        <label>パスワード</label>
+        <input class="login-input" type="password" name="password">
+      </div>
 
-</x-logout-layout>
+      <div class="form-group">
+        <label>パスワード確認</label>
+        <input class="login-input" type="password" name="password_confirmation">
+      </div>
+
+      <button class="login-btn" type="submit">
+        登録
+      </button>
+
+    </form>
+
+    <a class="register-link" href="/login">
+      ログイン画面へ戻る
+    </a>
+
+  </div>
+
+</div>
+
+@endsection
