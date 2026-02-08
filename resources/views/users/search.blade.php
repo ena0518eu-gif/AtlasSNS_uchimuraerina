@@ -1,81 +1,90 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/search.css') }}">
+@endsection
+
 @section('content')
 
-<div class="search-form">
-  <form action="{{ url('search') }}" method="GET">
+<!-- =========================
+  検索ページ 全体ラッパー（超重要）
+========================= -->
+<div class="search-wrapper">
 
-    <!-- 検索ワード入力 -->
-    <input
-      type="text"
-      name="keyword"
-      placeholder="ユーザー名を検索"
-      value="{{ request('keyword') }}"
-    >
+  <!-- =========================
+    検索フォーム
+  ========================= -->
+  <div class="search-form">
+    <form action="{{ url('search') }}" method="GET">
 
-    <!-- 検索ボタン（画像） -->
-    <button type="submit" class="search-btn">
-      <img src="{{ asset('images/search.png') }}" alt="検索">
-    </button>
+      <!-- 検索ワード入力 -->
+      <input
+        type="text"
+        name="keyword"
+        placeholder="ユーザー名"
+        value="{{ request('keyword') }}"
+      >
 
-  </form>
-</div>
+      <!-- 検索ボタン（画像） -->
+      <button type="submit" class="search-btn">
+        <img src="{{ asset('images/search.png') }}" alt="検索">
+      </button>
 
-{{-- 検索ワード表示 --}}
-<h3>検索ワード: {{ $keyword ?? '' }}</h3>
+    </form>
+  </div>
 
-{{-- 検索結果一覧 --}}
-<div class="search-result">
+  {{-- 検索ワード表示 --}}
+  <h3>検索ワード: {{ $keyword ?? '' }}</h3>
 
-@if(isset($users) && $users->count() > 0)
+  {{-- 検索結果一覧 --}}
+  <div class="search-result">
 
-  @foreach($users as $user)
+  @if(isset($users) && $users->count() > 0)
 
-  <div class="user-item">
+    @foreach($users as $user)
 
-    {{-- ユーザー情報 --}}
-    <div class="user-info">
-      <img src="{{ asset('images/' . $user->icon_image) }}" width="40">
-      <span>{{ $user->username }}</span>
+    <div class="user-item">
+
+      {{-- ユーザー情報 --}}
+      <div class="user-info">
+        <img src="{{ asset('images/' . $user->icon_image) }}" width="40">
+        <span>{{ $user->username }}</span>
+      </div>
+
+      {{-- フォローボタンエリア --}}
+      <div class="follow-btn-area">
+
+        @if(isset($followedUserIds) && in_array($user->id, $followedUserIds))
+
+          <form action="{{ route('follow.destroy', $user->id) }}" method="POST">
+            @csrf
+            @method('DELETE')
+            <button class="unfollow-btn">フォロー解除</button>
+          </form>
+
+        @else
+
+          <form action="{{ route('follow.store', $user->id) }}" method="POST">
+            @csrf
+            <button class="follow-btn">フォローする</button>
+          </form>
+
+        @endif
+
+      </div>
+
     </div>
 
-    {{-- フォローボタンエリア --}}
-    <div class="follow-btn-area">
+    @endforeach
 
-      {{-- フォロー済みの場合 --}}
-      @if(isset($followedUserIds) && in_array($user->id, $followedUserIds))
+  @else
 
-        <!-- フォロー解除ボタン -->
-        <form action="{{ route('follow.destroy', $user->id) }}" method="POST">
-          @csrf
-          @method('DELETE')
-          <button class="unfollow-btn">フォロー解除</button>
-        </form>
+    <p>検索結果がありません。</p>
 
-      {{-- 未フォローの場合 --}}
-      @else
-
-        <!-- フォローボタン -->
-        <form action="{{ route('follow.store', $user->id) }}" method="POST">
-          @csrf
-          <button class="follow-btn">フォローする</button>
-        </form>
-
-      @endif
-
-    </div>
+  @endif
 
   </div>
 
-  @endforeach
-
-@else
-
-  {{-- 検索結果なし --}}
-  <p>検索結果がありません。</p>
-
-@endif
-
 </div>
-
 @endsection

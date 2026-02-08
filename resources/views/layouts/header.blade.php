@@ -28,12 +28,11 @@
           <img src="{{ asset('images/arrow.png') }}" id="accordion-btn">
         </div>
 
-        <img
-          src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}"
-          id="header-user-icon"
-        >
 
-        <ul id="accordion-menu">
+
+<img src="{{ Auth::user()->icon_image ? asset('storage/'.Auth::user()->icon_image) : asset('storage/icon1.png') }}">
+
+<ul id="accordion-menu">
 
           <li>
             <a href="{{ url('/top') }}">HOME</a>

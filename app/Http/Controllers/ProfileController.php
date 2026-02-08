@@ -9,13 +9,14 @@ class ProfileController extends Controller
 {
     public function profile()
     {
-        return view('profiles.profile');
+        $user = Auth::user();
+        return view('profiles.profile', compact('user'));
     }
 
     // プロフィール更新処理
     public function update(Request $request)
     {
-        // ===== バリデーション =====
+        // バリデーション
         $request->validate([
 
             // ユーザー名
@@ -39,8 +40,8 @@ class ProfileController extends Controller
 
         // テキスト情報更新
         $user->username = $request->username;
-        $user->email = $request->email;
-        $user->bio = $request->bio;
+        $user->email    = $request->email;
+        $user->bio      = $request->bio;
 
         // パスワード（入力された時だけ）
         if ($request->filled('password')) {
@@ -49,8 +50,12 @@ class ProfileController extends Controller
 
         // アイコン画像
         if ($request->hasFile('icon')) {
-            $path = $request->file('icon')->store('public/icons');
-            $user->icon_path = str_replace('public/', 'storage/', $path);
+
+            // public/storage/icons に保存される
+            $path = $request->file('icon')->store('icons', 'public');
+
+            // DBには相対パスのみ保存
+            $user->icon_path = $path;
         }
 
         // 保存

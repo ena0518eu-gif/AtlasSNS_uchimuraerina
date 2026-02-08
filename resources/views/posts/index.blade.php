@@ -1,57 +1,176 @@
 @extends('layouts.app')
 
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/top.css') }}">
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+@endsection
+
 @section('content')
 
+<!-- =========================
+  左 投稿エリア（TOPページ）
+========================= -->
 
-@foreach($posts as $post)
+<div class="post-area">
 
-<div class="post-item">
+  <!-- =========================
+    投稿フォーム
+  ========================= -->
 
-  <div class="post-user-icon">
-    <img src="{{ $post->user->icon_path ? asset($post->user->icon_path) : asset('images/icon1.png') }}">
-  </div>
+  <div class="post-input-wrapper">
 
-  <div class="post-content">
-    <p class="post-username">{{ $post->user->username }}</p>
-    <p class="post-text">{{ $post->post }}</p>
-  </div>
+    <div class="post-input-area">
 
-  <div class="post-right">
+      <!-- ログインユーザーアイコン -->
+      <div class="post-user-icon">
+        <img src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}">
+      </div>
 
-    <div class="post-date">
-      {{ $post->created_at }}
-    </div>
+      <!-- 投稿フォーム -->
+      <form action="/posts" method="POST" class="post-form-inner">
+        @csrf
 
-    @if(Auth::id() === $post->user_id)
+        <textarea
+          name="post"
+          maxlength="150"
+          placeholder="投稿内容を入力してください。"
+        ></textarea>
 
-    <div class="post-action">
+        <button type="submit">
+          <img src="{{ asset('images/post.png') }}">
+        </button>
 
-      <!-- 編集 -->
-      <button class="edit-btn js-modal-open"
-        data-id="{{ $post->id }}"
-        data-post="{{ $post->post }}">
-        <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
-        <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
-      </button>
-
-      <!-- 削除 -->
-      <button
-        type="button"
-        class="delete-btn js-delete-open"
-        data-id="{{ $post->id }}">
-
-        <img src="{{ asset('images/trash.png') }}" class="delete-icon normal">
-        <img src="{{ asset('images/trash-h.png') }}" class="delete-icon hover">
-
-      </button>
+      </form>
 
     </div>
 
-    @endif
+  </div>
+
+  <!-- =========================
+    投稿一覧
+  ========================= -->
+
+  <div class="post-list-wrapper">
+
+    @foreach($posts as $post)
+
+    <!-- =========================
+      1投稿
+    ========================= -->
+
+    <div class="post-item">
+
+      <!-- 投稿ユーザーアイコン -->
+      <div class="post-user-icon">
+        <img src="{{ $post->user->icon_path ? asset($post->user->icon_path) : asset('images/icon1.png') }}">
+      </div>
+
+      <!-- 中央：本文エリア -->
+      <div class="post-main">
+        <p class="post-username">{{ $post->user->username }}</p>
+        <p class="post-text">{{ $post->post }}</p>
+      </div>
+
+      <!-- 右端：日付＋ボタン -->
+      <div class="post-side">
+
+        <div class="post-date">
+          {{ $post->created_at }}
+        </div>
+
+        @if(Auth::id() === $post->user_id)
+
+        <!-- =========================
+          編集・削除ボタン
+        ========================= -->
+
+        <div class="post-action">
+
+          <!-- 編集ボタン -->
+          <button
+            type="button"
+            class="edit-btn js-edit-open"
+            data-id="{{ $post->id }}"
+            data-post="{{ $post->post }}"
+          >
+            <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
+            <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
+          </button>
+
+          <!-- 削除ボタン -->
+          <button
+            type="button"
+            class="delete-btn js-delete-open"
+            data-id="{{ $post->id }}"
+          >
+            <img src="{{ asset('images/trash.png') }}" class="delete-icon normal">
+            <img src="{{ asset('images/trash-h.png') }}" class="delete-icon hover">
+          </button>
+
+        </div>
+
+        @endif
+
+      </div>
+
+    </div>
+
+    @endforeach
 
   </div>
 
 </div>
 
-@endforeach
+<!-- =========================
+  編集モーダル
+========================= -->
+
+<div class="modal-overlay" id="edit-modal">
+  <div class="modal-box">
+
+    <form method="POST" id="edit-form">
+      @csrf
+      @method('PUT')
+
+      <textarea
+        name="post"
+        id="edit-post"
+        maxlength="150"
+      ></textarea>
+
+      <div class="modal-btn-area">
+        <button type="submit" class="modal-ok">OK</button>
+        <button type="button" class="modal-cancel js-modal-close">キャンセル</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
+<!-- =========================
+  削除モーダル
+========================= -->
+
+<div class="modal-overlay" id="delete-modal">
+  <div class="modal-box">
+
+    <p class="delete-text">
+      この投稿を削除します。よろしいでしょうか？
+    </p>
+
+    <form method="POST" id="delete-form">
+      @csrf
+      @method('DELETE')
+
+      <div class="modal-btn-area">
+        <button type="submit" class="modal-ok">OK</button>
+        <button type="button" class="modal-cancel js-modal-close">キャンセル</button>
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
 @endsection

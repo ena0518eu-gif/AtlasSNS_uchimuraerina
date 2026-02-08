@@ -1,67 +1,103 @@
-@extends('layouts.login')
+@extends('layouts.app')
 
 @section('content')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile_edit.css') }}">
+@endsection
 
-<div class="profile-wrap">
-  <!-- アイコン -->
+
+<!-- =========================
+  相手プロフィール全体
+========================= -->
+
+<div class="profile-wrap profile-card">
+
+  <!-- =========================
+    左：ユーザーアイコン
+  ========================= -->
   <div class="profile-icon">
-    <img src="{{ asset($user->icon_path) }}">
+    <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
   </div>
 
-  <!-- ユーザー名 -->
-  <div class="profile-name">
-    {{ $user->username }}
+  <!-- =========================
+    右：ユーザー情報
+  ========================= -->
+  <div class="profile-info">
+
+    <!-- ユーザー名 -->
+    <div class="profile-name">
+      <span class="profile-label">ユーザー名</span>
+      {{ $user->username }}
+    </div>
+
+    <!-- 自己紹介 -->
+    <div class="profile-bio">
+      <span class="profile-label">自己紹介</span>
+      {{ $user->bio }}
+    </div>
+
   </div>
 
-  <!-- 自己紹介 -->
-  <div class="profile-bio">
-    {{ $user->bio }}
-  </div>
+  <!-- =========================
+    フォロー / フォロー解除ボタン
+  ========================= -->
+  <div class="profile-follow-btn">
 
-  <!-- フォロー数、フォロワー数 -->
-  <div class="follow-info">
-    <p>フォロー数: {{ count($user->follows) }} 人</p>
-    <p>フォロワー数: {{ count($user->followers) }} 人</p>
-  </div>
-
-  <!-- 投稿一覧 -->
-  <div class="posts-list">
-    <h3>投稿一覧</h3>
-    @foreach ($user->posts as $post)
-      <div class="post-item">
-        <!-- ユーザーアイコン -->
-        <div class="post-user-icon">
-          <img src="{{ asset($user->icon_path) }}">
-        </div>
-        <!-- ユーザー名 -->
-        <div class="post-content">
-          <p class="user-name">{{ $user->username }}</p>
-          <!-- 投稿内容 -->
-          <p>{{ $post->post }}</p>
-        </div>
-        <!-- 投稿日時 -->
-        <div class="post-date">
-          {{ $post->created_at }}
-        </div>
-      </div>
-    @endforeach
-  </div>
-
-  <!-- フォローボタン -->
-  <div class="follow-button">
     @if($isFollowed)
-      <form action="/unfollow/{{$user->id}}" method="POST">
+      <!-- フォロー解除 -->
+      <form action="{{ route('follow.destroy', $user->id) }}" method="POST">
         @csrf
-        @method('DELETE') <!-- ここでDELETEメソッドを追加 -->
-        <button type="submit">フォロー解除</button>
+        @method('DELETE')
+        <button type="submit" class="unfollow-btn">
+          フォロー解除
+        </button>
       </form>
     @else
-      <form action="/follow/{{$user->id}}" method="POST">
+      <!-- フォローする -->
+      <form action="{{ route('follow.store', $user->id) }}" method="POST">
         @csrf
-        <button type="submit">フォローする</button>
+        <button type="submit" class="follow-btn">
+          フォローする
+        </button>
       </form>
     @endif
+
   </div>
+
+</div>
+
+<!-- =========================
+  投稿一覧
+========================= -->
+
+<div class="post-list-wrapper">
+
+  @foreach ($user->posts as $post)
+
+    <div class="post-item">
+
+      <!-- 投稿者アイコン -->
+      <div class="post-user-icon">
+        <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+      </div>
+
+      <!-- 投稿内容 -->
+      <div class="post-content">
+        <p class="post-username">{{ $user->username }}</p>
+        <p class="post-text">{{ $post->post }}</p>
+      </div>
+
+      <!-- 投稿日時 -->
+      <div class="post-right">
+        <p class="post-date">
+          {{ $post->created_at->format('Y-m-d H:i') }}
+        </p>
+      </div>
+
+    </div>
+
+  @endforeach
 
 </div>
 

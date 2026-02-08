@@ -1,35 +1,62 @@
 @extends('layouts.app')
 
 @section('content')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/follow-list.css') }}">
+@endsection
 
-<h2>フォロワーリスト</h2>
-            <div class="follower-item">
+  <!-- フォロワー一覧 -->
 
-<div class="follower-icon-area">
-    @foreach($followersPosts as $follower)
-        @foreach($follower->posts as $post)
-                <!-- ユーザーアイコン (リンク付き) -->
-                <a href="{{ url('/profile/' . $follower->id) }}">
-                    <img src="{{ asset('images/' . $follower->icon_image) }}" class="follow-icon">
-                </a>
+<h2 class="follow-title">フォロワーリスト</h2>
 
-                <!-- ユーザー名 -->
-                <div class="follower-username">
-                    <strong>{{ $follower->username }}</strong>
-                </div>
+  <!-- フォロワーアイコン一覧（上部） -->
+<div class="follow-icon-area">
+  @foreach($followersPosts as $follower)
+    <!-- ユーザーアイコン（プロフィールリンク） -->
+    <a href="{{ url('/profile/' . $follower->id) }}">
+      <img
+        src="{{ asset('images/' . $follower->icon_image) }}"
+        class="follow-icon"
+      >
+    </a>
+  @endforeach
+</div>
 
-                <!-- 投稿内容 -->
-                <div class="post-content">
-                    <p>{{ $post->content }}</p>
-                </div>
+  <!-- 投稿一覧 -->
+<div class="post-list-wrapper">
+  @foreach($followersPosts as $follower)
+    @foreach($follower->posts as $post)
+      <!-- 投稿1件 -->
+      <div class="post-item">
+        <!-- ユーザーアイコン -->
+        <div class="post-user-icon">
+          <a href="{{ url('/profile/' . $follower->id) }}">
+            <img src="{{ asset('images/' . $follower->icon_image) }}">
+          </a>
+        </div>
 
-                <!-- 投稿日時 -->
-                <div class="post-time">
-                    <p>{{ $post->created_at->format('Y-m-d H:i') }}</p>
-                </div>
-            </div>
-        @endforeach
+        <!-- 投稿内容 -->
+        <div class="post-content">
+          <!-- ユーザー名 -->
+          <p class="post-username">
+            {{ $follower->username }}
+          </p>
+          <!-- 投稿本文 -->
+          <p class="post-text">
+            {{ $post->post }}
+          </p>
+        </div>
+
+        <!-- 投稿日時 -->
+        <div class="post-right">
+          <span class="post-date">
+            {{ $post->created_at->format('Y-m-d H:i') }}
+          </span>
+        </div>
+      </div>
     @endforeach
+  @endforeach
 </div>
 
 @endsection

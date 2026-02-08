@@ -13,20 +13,14 @@ Route::get('/', function () {
 require __DIR__ . '/auth.php';
 
 // =========================
-// 登録完了画面（ログイン不要）
-// =========================
-
-Route::get('added', function () {
-    return view('auth.added');
-})->name('added');
-
-// =========================
 // ログイン必須ページ
 // =========================
 
 Route::middleware('auth')->group(function () {
 
-    // =========================
+
+
+    // ========================
     // トップ（投稿一覧）
     // =========================
     Route::get('top', [PostsController::class, 'index']);
@@ -39,7 +33,7 @@ Route::middleware('auth')->group(function () {
     // =========================
     // 投稿更新（編集）
     // =========================
-    Route::put('posts/update', [PostsController::class, 'update'])->name('posts.update');
+    Route::put('posts/{id}', [PostsController::class, 'update'])->name('posts.update');
 
     // =========================
     // 投稿削除
@@ -90,5 +84,4 @@ Route::middleware('auth')->group(function () {
     // 相手プロフィール表示
     // =========================
     Route::get('profile/{id}', [UsersController::class, 'show'])->name('profile.show');
-
 });

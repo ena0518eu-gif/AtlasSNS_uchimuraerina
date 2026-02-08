@@ -1,0 +1,255 @@
+  /* 投稿エリア全体（TOPページ） */
+
+  .post-area {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+  }
+
+  /* 投稿フォーム */
+
+  .post-input-wrapper {
+    padding: 20px;
+    border-bottom: 3px solid #e0e0e0;
+  }
+
+  .post-input-area {
+    display: flex;
+    align-items: flex-start;
+    gap: 15px;
+  }
+
+  /* ログインユーザーアイコン */
+  .post-user-icon img {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  /* 投稿フォーム */
+  .post-form-inner {
+    flex: 1;
+    display: flex;
+    align-items: flex-end;
+    gap: 10px;
+  }
+
+  .post-form-inner textarea {
+    flex: 1;
+    height: 60px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+    font-size: 14px;
+  }
+
+  .post-form-inner button {
+    background: none;
+    border: none;
+    cursor: pointer;
+  }
+
+  .post-form-inner button img {
+    width: 40px;
+  }
+
+  /* =========================
+  投稿一覧
+========================= */
+
+  .post-list-wrapper {
+    flex: 1;
+    overflow-y: auto;
+  }
+
+  /* 1投稿 */
+  .post-item {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* 投稿内容 */
+  .post-content {
+    flex: 1;
+  }
+
+  .post-username {
+    font-weight: bold;
+    margin: 0 0 5px 0;
+    font-size: 14px;
+  }
+
+  .post-text {
+    margin: 0;
+    font-size: 14px;
+    word-break: break-word;
+  }
+
+  /* 右側エリア */
+  .post-right {
+    min-width: 120px;
+    text-align: right;
+  }
+
+  /* 投稿日時 */
+  .post-date {
+    font-size: 12px;
+    color: #888;
+    margin-bottom: 10px;
+  }
+
+  /* 編集・削除ボタン */
+
+  .post-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .edit-btn,
+  .delete-btn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    position: relative;
+  }
+
+  /* ホバー切替 */
+  .edit-icon.hover,
+  .delete-icon.hover {
+    display: none;
+  }
+
+  .edit-btn:hover .normal,
+  .delete-btn:hover .normal {
+    display: none;
+  }
+
+  .edit-btn:hover .hover,
+  .delete-btn:hover .hover {
+    display: inline;
+  }
+
+  /* モーダル（編集・削除） */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.5);
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+  }
+
+  .modal-box {
+    background: #fff;
+    padding: 20px;
+    width: 400px;
+  }
+
+  .modal-box textarea {
+    width: 100%;
+    height: 100px;
+    resize: none;
+    padding: 10px;
+    border: 1px solid #ccc;
+  }
+
+  /* ボタンエリア */
+  .modal-btn-area {
+    text-align: right;
+    margin-top: 15px;
+  }
+
+  .modal-ok {
+    background: #1768c4;
+    color: #fff;
+    border: none;
+    padding: 6px 14px;
+    cursor: pointer;
+  }
+
+  .modal-cancel {
+    background: #ccc;
+    border: none;
+    padding: 6px 14px;
+    margin-left: 8px;
+    cursor: pointer;
+  }
+
+  /* 削除テキスト */
+  .delete-text {
+    margin-bottom: 20px;
+  }
+
+  /* 投稿1件の横並び */
+  .post-item {
+    display: flex;
+    gap: 15px;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* 右側の全体 */
+  .post-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+  }
+
+  /* 名前と日付を同じ行に */
+  .post-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+  }
+
+  .post-username {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .post-date {
+    font-size: 12px;
+    color: #888;
+  }
+
+  /* 本文 */
+  .post-text {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  /* 編集削除を右に寄せる */
+  .post-action {
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }
+
+  .post-item {
+    display: flex;
+    padding: 20px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  .post-main {
+    flex: 1;
+    margin-left: 15px;
+  }
+
+  .post-side {
+    width: 130px;
+    text-align: right;
+  }
+
+  .post-action {
+    margin-top: 10px;
+    display: flex;
+    justify-content: flex-end;
+    gap: 10px;
+  }

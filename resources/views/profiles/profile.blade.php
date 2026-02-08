@@ -1,64 +1,95 @@
-<x-login-layout>
+@extends('layouts.app')
 
-<div class="profile-wrap">
+@section('content')
+@section('css')
+<link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile.css') }}">
+@endsection
 
-  <!-- 現在のログインユーザーアイコン -->
-  <div class="profile-icon">
-    <img src="{{ asset(Auth::user()->icon_path) }}">
-  </div>
+<div class="profile-area">
+  <div class="profile-card">
 
-  <!-- エラーメッセージ表示 -->
-  @if ($errors->any())
-    @foreach ($errors->all() as $error)
-      <p style="color:red">{{ $error }}</p>
-    @endforeach
-  @endif
+    <!-- =========================
+      プロフィール全体（横並び）
+    ========================= -->
+    <div class="profile-wrap">
 
-  <!-- プロフィール編集フォーム -->
-  <form action="{{ route('profile.update') }}" method="POST" enctype="multipart/form-data">
-    @csrf
+      <!-- =========================
+        左：ユーザーアイコン
+      ========================= -->
+      <div class="profile-icon">
+        <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+      </div>
 
-    <!-- ユーザー名 -->
-    <div class="form-group">
-      <label>ユーザー名</label>
-      <input type="text" name="username" value="{{ Auth::user()->username }}">
-    </div>
+      <!-- =========================
+        右：プロフィール編集フォーム
+      ========================= -->
+      <form class="profile-form"
+            action="{{ route('profile.update') }}"
+            method="POST"
+            enctype="multipart/form-data">
+        @csrf
 
-    <!-- メールアドレス -->
-    <div class="form-group">
-      <label>メールアドレス</label>
-      <input type="email" name="email" value="{{ Auth::user()->email }}">
-    </div>
+        <!-- =========================
+          ユーザー名
+        ========================= -->
+        <div class="form-group">
+          <label>ユーザー名</label>
+          <input type="text" name="username" value="{{ $user->username }}">
+        </div>
 
-    <!-- パスワード -->
-    <div class="form-group">
-      <label>パスワード</label>
-      <input type="password" name="password">
-    </div>
+        <!-- =========================
+          メールアドレス
+        ========================= -->
+        <div class="form-group">
+          <label>メールアドレス</label>
+          <input type="email" name="email" value="{{ $user->email }}">
+        </div>
 
-    <!-- パスワード確認 -->
-    <div class="form-group">
-      <label>パスワード確認</label>
-      <input type="password" name="password_confirmation">
-    </div>
+        <!-- =========================
+          パスワード
+        ========================= -->
+        <div class="form-group">
+          <label>パスワード</label>
+          <input type="password" name="password">
+        </div>
 
-    <!-- 自己紹介 -->
-    <div class="form-group">
-      <label>自己紹介</label>
-      <textarea name="bio">{{ Auth::user()->bio }}</textarea>
-    </div>
+        <!-- =========================
+          パスワード確認
+        ========================= -->
+        <div class="form-group">
+          <label>パスワード確認</label>
+          <input type="password" name="password_confirmation">
+        </div>
 
-    <!-- アイコン画像 -->
-    <div class="form-group">
-      <label>アイコン画像</label>
-      <input type="file" name="icon">
-    </div>
+        <!-- =========================
+          自己紹介
+        ========================= -->
+        <div class="form-group">
+          <label>自己紹介</label>
+          <textarea name="bio">{{ $user->bio }}</textarea>
+        </div>
 
-    <!-- 更新ボタン -->
-    <button type="submit">更新</button>
+        <!-- =========================
+          アイコン画像
+        ========================= -->
+        <div class="form-group">
+          <label>アイコン画像</label>
+          <input type="file" name="icon">
+        </div>
 
-  </form>
+        <!-- =========================
+          更新ボタン
+        ========================= -->
+        <div class="form-btn">
+          <button type="submit">更新</button>
+        </div>
 
-</div>
+      </form>
 
-</x-login-layout>
+    </div><!-- /.profile-wrap -->
+
+  </div><!-- /.profile-card -->
+</div><!-- /.profile-area -->
+
+@endsection

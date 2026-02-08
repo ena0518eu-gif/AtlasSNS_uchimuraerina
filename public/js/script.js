@@ -1,37 +1,62 @@
 $(function () {
 
-  /* 投稿編集モーダルを開く */
-  $(document).on('click', '.edit-btn', function () {
+  /* =========================
+     アコーディオンメニュー
+  ========================= */
 
-    $('.js-modal').fadeIn();
+  $('#accordion-btn').on('click', function () {
+    $('#accordion-menu').stop(true, true).slideToggle(200);
+    $(this).toggleClass('active');
+  });
+
+
+  /* =========================
+     編集モーダル表示
+  ========================= */
+
+  $(document).on('click', '.js-edit-open', function () {
 
     let post = $(this).data('post');
-    let post_id = $(this).data('id');
+    let id = $(this).data('id');
 
-    $('.modal_post').val(post);
-    $('.modal_post_id').val(post_id);
+    // textareaに投稿内容をセット
+    $('#edit-post').val(post);
 
-    return false;
+    // action設定
+    $('#edit-form').attr('action', '/posts/' + id);
 
-  });
-
-
-  /* モーダルを閉じる */
-  $(document).on('click', '.js-modal-close', function () {
-
-    $('.js-modal').fadeOut();
-
-    return false;
+    // モーダル表示
+    $('#edit-modal').fadeIn(200);
 
   });
 
 
-  /* ヘッダーアコーディオン開閉 */
-  $('#accordion-btn').on('click', function () {
+  /* =========================
+     削除モーダル表示
+  ========================= */
 
-    $('#accordion-menu').slideToggle();
+  $(document).on('click', '.js-delete-open', function () {
 
-    $(this).toggleClass('rotate');
+    let id = $(this).data('id');
+
+    // action設定
+    $('#delete-form').attr('action', '/posts/' + id);
+
+    // モーダル表示
+    $('#delete-modal').fadeIn(200);
+
+  });
+
+
+  /* =========================
+     モーダル閉じる
+  ========================= */
+
+  $('.js-modal-close, .modal-overlay').on('click', function (e) {
+
+    if ($(e.target).hasClass('modal-overlay') || $(e.target).hasClass('js-modal-close')) {
+      $('.modal-overlay').fadeOut(200);
+    }
 
   });
 

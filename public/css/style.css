@@ -4,12 +4,12 @@
   共通リセット
 ========================= */
 
-/* ボックスサイズ統一 */
-* {
+*,
+*::before,
+*::after {
     box-sizing: border-box;
 }
 
-/* 全体リセット */
 html,
 body {
     margin: 0;
@@ -18,9 +18,18 @@ body {
     height: 100%;
 }
 
-/* 横はみ出し防止 */
 body {
     overflow-x: hidden;
+    font-family: "Helvetica Neue", Arial, sans-serif;
+}
+
+/* =========================
+  画像共通
+========================= */
+
+img {
+    display: block;
+    max-width: 100%;
 }
 
 /* =========================
@@ -28,118 +37,96 @@ body {
 ========================= */
 
 #head {
-    background: #0066cc;
-    height: 70px;
-    position: relative;
-    z-index: 1000;
+    height: 60px;
+    background: #1768c4;
 }
 
 #menu-area {
-    width: 100%;
-    height: 70px;
-    padding: 0 20px;
-
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 60px;
+    padding: 0 20px;
 }
 
-/* ---------- 左側 ---------- */
-
-.header-left {
-    display: flex;
-    align-items: center;
+.header-left img {
+    height: 35px;
 }
-
-/* Atlasロゴ */
-
-#atlas-logo {
-    height: 32px;
-}
-
-/* ---------- 右側 ---------- */
 
 .header-right {
     display: flex;
     align-items: center;
-    gap: 12px;
-
     position: relative;
 }
-
-/* ユーザー名 */
 
 #user-name {
     color: #fff;
+    margin-right: 10px;
     font-size: 14px;
 }
 
-/* 矢印ボタン（XD仕様） */
+/* =========================
+  矢印
+========================= */
 
-.arrow-btn {
-    color: #fff;
-    font-size: 12px;
+#accordion-btn {
+    width: 10px;
+    height: 10px;
+    border-right: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(45deg);
+    margin-right: 15px;
     cursor: pointer;
-    transition: 0.3s;
 }
 
-/* 矢印回転 */
-
-.rotate {
-    transform: rotate(180deg);
+#accordion-btn.active {
+    transform: rotate(-135deg);
 }
 
-/* ヘッダーユーザーアイコン（CSSで赤丸作成） */
+/* =========================
+  ヘッダーアイコン
+========================= */
 
-#header-user-icon {
-    width: 38px;
-    height: 38px;
-    background: #e74c3c;
+.header-user-icon {
+    width: 40px;
+    height: 40px;
     border-radius: 50%;
-    position: relative;
+    overflow: hidden;
 }
 
-/* 中の人マーク */
-
-#header-user-icon::after {
-    content: "";
-    position: absolute;
-    top: 9px;
-    left: 11px;
-
-    width: 16px;
-    height: 16px;
-
-    background: #fff;
-    border-radius: 50%;
+.header-user-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* ---------- アコーディオン ---------- */
+/* =========================
+  ドロップダウン
+========================= */
 
 #accordion-menu {
     display: none;
-
     position: absolute;
     top: 60px;
     right: 0;
-
+    width: 180px;
     background: #fff;
-    border: 1px solid #ccc;
-    padding: 10px 15px;
-
-    z-index: 999;
+    border: 1px solid #ddd;
+    list-style: none;
+    padding: 0;
 }
 
 #accordion-menu li {
-    list-style: none;
-    margin: 8px 0;
+    border-bottom: 1px solid #ddd;
 }
 
 #accordion-menu a,
 #accordion-menu button {
-    font-size: 13px;
-    background: none;
+    width: 100%;
+    padding: 12px 0;
+    text-align: center;
     border: none;
+    background: none;
     cursor: pointer;
 }
 
@@ -147,312 +134,107 @@ body {
   メインレイアウト
 ========================= */
 
-#row {
+.top-wrapper {
     display: flex;
-    max-width: 1200px;
-
-    margin: 70px auto 0;
+    width: 100%;
+    height: calc(100vh - 60px);
 }
 
-/* ---------- メイン ---------- */
+/* =========================
+  メイン
+========================= */
 
-#container {
+.main-area {
     flex: 1;
-    padding: 20px;
+    display: flex;
+    flex-direction: column;
 
+    /* flexはみ出し防止 */
     min-width: 0;
 }
 
-/* ---------- サイドバー ---------- */
-
-#side-bar {
-    width: 300px;
-    min-width: 300px;
-
-    border-left: 1px solid #ddd;
-    padding: 20px;
-
-    background: #f7f7f7;
+/* =========================
+  サイドバー（骨格）
+========================= */
+.side-bar {
+    width: 280px;
+    /* sidebar.cssと統一 */
+    flex-shrink: 0;
+    box-sizing: border-box;
 }
 
 /* =========================
-  投稿フォーム
+  投稿一覧ラッパー
 ========================= */
-
-.post-input-area {
-    display: flex;
-    align-items: center;
-
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-/* 投稿ユーザーアイコン */
-
-.post-user-icon img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-
-/* 入力エリア */
-
-.post-form-inner {
-    display: flex;
-    align-items: center;
-    flex: 1;
-
-    margin-left: 15px;
-    gap: 10px;
-}
-
-.post-form-inner textarea {
-    flex: 1;
-
-    border: none;
-    outline: none;
-    resize: none;
-
-    font-size: 14px;
-}
-
-/* 投稿ボタン */
-
-.post-form-inner button {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.post-form-inner button img {
-    width: 35px;
+.post-list-wrapper {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 /* =========================
-  投稿一覧
+  投稿1件
 ========================= */
-
-.posts-list {
-    max-width: 900px;
-    margin: 0 auto;
-}
-
 .post-item {
     display: flex;
     align-items: flex-start;
+    padding: 15px 0;
+    border-bottom: 1px solid #e0e0e0;
 
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-
-    background: #fff;
+    /* 横はみ出し防止 */
+    max-width: 100%;
+    box-sizing: border-box;
 }
 
+/* =========================
+  ユーザーアイコン
+========================= */
+.post-user-icon {
+    margin-right: 15px;
+    flex-shrink: 0;
+    /* 縮まないようにする */
+}
+
+.post-user-icon img {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+/* =========================
+  投稿内容
+========================= */
 .post-content {
     flex: 1;
-    margin-left: 15px;
+
+    /* flexレイアウトでのはみ出し対策（超重要） */
+    min-width: 0;
 }
 
-.post-right {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-end;
+.post-username {
+    font-weight: bold;
+    margin-bottom: 5px;
+}
 
-    gap: 6px;
+.post-text {
+    color: #333;
+    line-height: 1.5;
+
+    /* 長文ではみ出さないようにする */
+    word-break: break-word;
+}
+
+/* =========================
+  右側：投稿日
+========================= */
+.post-right {
+    margin-left: 15px;
     white-space: nowrap;
+    flex-shrink: 0;
+    /* 押し潰されないように */
 }
 
 .post-date {
     font-size: 12px;
     color: #888;
-}
-
-.post-action {
-    display: flex;
-    gap: 10px;
-}
-
-/* =========================
-  編集・削除ボタン
-========================= */
-
-.edit-btn,
-.delete-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.edit-icon,
-.delete-icon {
-    width: 22px;
-}
-
-/* hover切替 */
-
-.edit-icon.hover,
-.delete-icon.hover {
-    display: none;
-}
-
-.edit-btn:hover .edit-icon.normal,
-.delete-btn:hover .delete-icon.normal {
-    display: none;
-}
-
-.edit-btn:hover .edit-icon.hover,
-.delete-btn:hover .delete-icon.hover {
-    display: inline;
-}
-
-/* =========================
-  エラー表示
-========================= */
-
-.error-area {
-    margin-bottom: 10px;
-}
-
-.error-message {
-    color: red;
-    font-size: 13px;
-}
-
-/* =========================
-  検索画面
-========================= */
-
-.search-form {
-    padding: 20px;
-
-    display: flex;
-    justify-content: center;
-}
-
-.search-form form {
-    display: flex;
-    width: 100%;
-    max-width: 500px;
-}
-
-.search-form input {
-    flex: 1;
-    padding: 6px 10px;
-}
-
-/* 検索ボタン */
-
-.search-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-}
-
-.search-btn img {
-    width: 35px;
-}
-
-/* 検索結果 */
-
-.search-result {
-    max-width: 800px;
-    margin: 0 auto;
-}
-
-.user-item {
-    display: flex;
-    justify-content: space-between;
-
-    padding: 15px 20px;
-    border-bottom: 1px solid #ddd;
-}
-
-.user-info {
-    display: flex;
-    gap: 10px;
-}
-
-.user-info img {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-
-/* =========================
-  フォローアイコン
-========================= */
-
-.follow-icon-area {
-    display: flex;
-    flex-wrap: wrap;
-
-    gap: 8px;
-    margin-bottom: 15px;
-}
-
-.follow-icon {
-    width: 45px;
-    height: 45px;
-    border-radius: 50%;
-}
-
-/* =========================
-  右サイド ユーザー情報
-========================= */
-
-#confirm {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-}
-
-#confirm>p:first-child {
-    font-weight: bold;
-    font-size: 14px;
-}
-
-#confirm>div {
-    display: flex;
-    justify-content: space-between;
-    font-size: 13px;
-}
-
-/* =========================
-  ボタン共通
-========================= */
-
-.btn {
-    text-align: center;
-}
-
-.btn a {
-    display: block;
-
-    padding: 8px 0;
-
-    background: #0066cc;
-    color: #fff;
-
-    border-radius: 6px;
-    text-decoration: none;
-
-    font-size: 13px;
-}
-
-.btn a:hover {
-    opacity: 0.8;
-}
-
-/* ヘッダーユーザーアイコン */
-#header-user-icon {
-    width: 40px;
-    height: 40px;
-    border-radius: 50%;
-    object-fit: cover;
-    cursor: pointer;
-}
-
-.header-right {
-    display: flex;
-    align-items: center;
-    gap: 10px;
 }

@@ -25,17 +25,34 @@ class RegisteredUserController extends Controller
      */
     public function store(Request $request): RedirectResponse
     {
-        $user = User::create([
-            'username' => $request->username,
-            'email' => $request->email,
-            'password' => Hash::make($request->password),
+        // =========================
+        // バリデーション
+        // =========================
+        $request->validate([
+            'username' => 'required|min:2|max:12',
+            'email'    => 'required|email|unique:users,email',
+            'password' => 'required|min:8|confirmed',
         ]);
 
-        // 自動ログイン解除
+        // =========================
+        // ユーザー作成
+        // =========================
+        $user = User::create([
+            'username'  => $request->username,
+            'email'     => $request->email,
+            'password'  => Hash::make($request->password),
+
+            // 初期アイコンは未設定（デフォルト画像を表示）
+            'icon_path' => null,
+        ]);
+
+        // =========================
+        // 自動ログイン解除（仕様）
+        // =========================
         Auth::logout();
 
         return redirect()->route('added')
-->with('username', $user->username);
+            ->with('username', $user->username);
     }
 
     /**

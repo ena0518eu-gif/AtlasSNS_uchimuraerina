@@ -1,0 +1,65 @@
+/* プロフィール */
+
+.profile-wrap {
+  display: flex;
+  align-items: flex-start;
+  padding: 40px 40px;
+  gap: 40px;
+}
+
+/* 左：プロフィールアイコン */
+.profile-icon img {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+}
+
+/* 右：フォーム */
+.profile-form {
+  flex: 1;
+  max-width: 600px;
+}
+
+/* 1行ずつ */
+.profile-row {
+  display: flex;
+  align-items: center;
+  margin-bottom: 18px;
+}
+
+/* ラベル */
+.profile-row label {
+  width: 140px;
+  font-size: 14px;
+  color: #333;
+}
+
+/* input / textarea */
+.profile-row input,
+.profile-row textarea {
+  flex: 1;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+}
+
+/* textarea */
+.profile-row textarea {
+  height: 80px;
+  resize: none;
+}
+
+/* 更新ボタン */
+.profile-btn {
+  text-align: right;
+  margin-top: 30px;
+}
+
+.profile-btn button {
+  width: 120px;
+  height: 36px;
+  background: #1768c4;
+  color: #fff;
+  border: none;
+  cursor: pointer;
+}

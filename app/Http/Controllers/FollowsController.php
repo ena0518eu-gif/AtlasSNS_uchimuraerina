@@ -16,6 +16,7 @@ class FollowsController extends Controller
         $user = Auth::user();
 
         // ユーザーがフォローしているユーザーの投稿を取得
+        // with('posts') で投稿も同時取得
         $followedUsersPosts = $user->follows()->with('posts')->get();  // 投稿も取得
 
         // ビューに渡す
@@ -45,7 +46,8 @@ class FollowsController extends Controller
             $user->follows()->attach($userId); // 中間テーブルにレコードを追加
         }
 
-        return redirect()->back(); // フォロー後、前のページに戻る
+        // フォロー後、前のページに戻る
+        return redirect()->back();
     }
 
     // フォロー解除処理
@@ -58,6 +60,7 @@ class FollowsController extends Controller
             $user->follows()->detach($userId); // 中間テーブルからレコードを削除
         }
 
-        return redirect()->back(); // フォロー解除後、前のページに戻る
+        // フォロー解除後、前のページに戻る
+        return redirect()->back();
     }
 }

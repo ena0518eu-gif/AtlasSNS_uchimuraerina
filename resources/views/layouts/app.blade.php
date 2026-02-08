@@ -5,36 +5,27 @@
   <title>AtlasSNS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- =========================
-    共通CSS
-  ========================= -->
 
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+
+  @yield('css')
+
 </head>
 
-<body>
+<body class="{{ request()->routeIs('profile.edit') ? 'profile-page' : '' }}">
 
-
-<!-- =========================
-  ヘッダー
-========================= -->
+  <!-- ヘッダー -->
 
 <header id="head">
   <div id="menu-area">
 
-    <!-- =========================
-      左ロゴ
-    ========================= -->
-
+    <!-- 左ロゴ -->
     <div class="header-left">
       <img src="{{ asset('images/atlas.png') }}" id="atlas-logo">
     </div>
 
-    <!-- =========================
-      右メニュー
-    ========================= -->
-
+    <!-- 右メニュー -->
     <div class="header-right">
 
       <!-- ユーザー名 -->
@@ -42,36 +33,31 @@
         {{ Auth::user()->username }} さん
       </span>
 
-      <!-- =========================
-        矢印ボタン（画像）
-      ========================= -->
+      <!-- 矢印ボタン -->
+      <div id="accordion-btn"></div>
 
-      <div id="accordion-btn" class="menu-btn">
+      <!-- ユーザーアイコン -->
+      <div class="header-user-icon">
+        <img src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}">
       </div>
 
-      <!-- =========================
-        ユーザーアイコン
-      ========================= -->
-
-
-<img src="{{ asset(Auth::user()->icon_path) }}" id="header-user-icon">
-
-      <!-- =========================
-        アコーディオンメニュー
-      ========================= -->
-
+      <!-- ドロップダウンメニュー -->
       <ul id="accordion-menu">
 
         <li>
-<a href="{{ route('profile.edit') }}">
-  プロフィール編集
-</a>
+          <a href="/top">HOME</a>
         </li>
 
         <li>
-          <form method="POST" action="{{ route('logout') }}">
+          <a href="{{ route('profile.edit') }}">
+            プロフィール編集
+          </a>
+        </li>
+
+        <li>
+          <form method="POST" action="/logout">
             @csrf
-            <button type="submit">
+            <button type="submit" class="logout-btn">
               ログアウト
             </button>
           </form>
@@ -84,60 +70,55 @@
   </div>
 </header>
 
-<!-- =========================
-  メインレイアウト
-========================= -->
+  <!-- メインレイアウト -->
 
-<div id="row">
+<div class="top-wrapper">
 
-  <!-- =========================
-    メインコンテンツ
-  ========================= -->
-
-  <div id="container">
+  <!-- 左メインエリア -->
+  <main class="main-area">
     @yield('content')
-  </div>
+  </main>
 
-  <!-- =========================
-    サイドバー
-  ========================= -->
-
-  <div id="side-bar">
+  <!-- 右サイドバー -->
+  <aside class="side-bar">
 
     <div id="confirm">
 
       <p>{{ Auth::user()->username }}さんの情報</p>
 
-      <div>
-        <span>フォロー数</span>
-        <span>{{ Auth::user()->follows()->count() }}</span>
+      <!-- フォロー -->
+      <div class="follow-block">
+        <div class="follow-row">
+          <span>フォロー数</span>
+          <span>{{ Auth::user()->follows()->count() }}人</span>
+        </div>
+        <a href="/follow-list" class="list-btn">フォローリスト</a>
       </div>
 
-      <div>
-        <span>フォロワー数</span>
-        <span>{{ Auth::user()->followers()->count() }}</span>
+      <!-- フォロワー -->
+      <div class="follow-block">
+        <div class="follow-row">
+          <span>フォロワー数</span>
+          <span>{{ Auth::user()->followers()->count() }}人</span>
+        </div>
+        <a href="/follower-list" class="list-btn">フォロワーリスト</a>
       </div>
+
+      <div class="under-line"></div>
 
       <div class="btn">
-        <a href="/search">
-          ユーザー検索
-        </a>
+        <a href="/search">ユーザー検索</a>
       </div>
 
     </div>
 
-  </div>
+  </aside>
 
 </div>
 
-<!-- =========================
-  JS読み込み
-========================= -->
+  <!-- JS読み込み -->
 
-<!-- jQuery -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
-<!-- 共通JS -->
 <script src="{{ asset('js/script.js') }}"></script>
 
 </body>
