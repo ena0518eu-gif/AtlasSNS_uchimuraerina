@@ -1,23 +1,39 @@
-<!-- フォロー -->
-<div class="follow-block">
-<div class="follow-row">
-  <span>フォロー数</span>
-  <span>{{ Auth::user()->follows()->count() }}人</span>
-</div>
+  <!-- サイドバー中身 -->
+<div id="confirm">
+
+  <!-- フォロー数 -->
+  <div class="follow-block">
+    <div class="follow-row">
+      <p>フォロー数</p>
+      <p>{{ Auth::user()->follows()->count() }}人</p>
+    </div>
+
+    <a href="{{ route('follow.list') }}" class="list-btn">
+      フォローリスト
+    </a>
+  </div>
 
   <div class="under-line"></div>
 
-  <a href="/follow-list" class="list-btn">フォローリスト</a>
-</div>
+  <!-- フォロワー数 -->
+  <div class="follow-block">
+    <div class="follow-row">
+      <p>フォロワー数</p>
+      <p>{{ Auth::user()->followers()->count() }}人</p>
+    </div>
 
-<!-- フォロワー -->
-<div class="follow-block">
-<div class="follow-row">
-  <span>フォロワー数</span>
-  <span>{{ Auth::user()->followers()->count() }}人</span>
-</div>
+    <a href="{{ route('follower.list') }}" class="list-btn">
+      フォロワーリスト
+    </a>
+  </div>
 
   <div class="under-line"></div>
 
-  <a href="/follower-list" class="list-btn">フォロワーリスト</a>
+  <!-- ユーザー検索 -->
+  <div class="follow-block">
+    <a href="{{ route('search') }}" class="list-btn">
+      ユーザー検索
+    </a>
+  </div>
+
 </div>

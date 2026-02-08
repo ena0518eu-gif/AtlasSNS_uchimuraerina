@@ -16,7 +16,9 @@
     <!-- ユーザーアイコン（プロフィールリンク） -->
     <a href="{{ url('/profile/' . $follower->id) }}">
       <img
-        src="{{ asset('images/' . $follower->icon_image) }}"
+        src="{{ $follower->icon_path
+          ? asset('storage/' . $follower->icon_path)
+          : asset('images/icon1.png') }}"
         class="follow-icon"
       >
     </a>
@@ -32,7 +34,11 @@
         <!-- ユーザーアイコン -->
         <div class="post-user-icon">
           <a href="{{ url('/profile/' . $follower->id) }}">
-            <img src="{{ asset('images/' . $follower->icon_image) }}">
+            <img
+              src="{{ $follower->icon_path
+                ? asset('storage/' . $follower->icon_path)
+                : asset('images/icon1.png') }}"
+            >
           </a>
         </div>
 

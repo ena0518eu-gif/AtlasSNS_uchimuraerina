@@ -3,26 +3,20 @@
 @section('content')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/profile_edit.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile-other.css') }}">
 @endsection
 
 
-<!-- =========================
-  相手プロフィール全体
-========================= -->
+  <!-- 相手プロフィール全体 -->
 
 <div class="profile-wrap profile-card">
 
-  <!-- =========================
-    左：ユーザーアイコン
-  ========================= -->
+    <!-- 左：ユーザーアイコン -->
   <div class="profile-icon">
-    <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+    <img src="{{ $user->icon_path ? asset('storage/' . $user->icon_path) : asset('images/icon1.png') }}">
   </div>
 
-  <!-- =========================
-    右：ユーザー情報
-  ========================= -->
+    <!-- 右：ユーザー情報 -->
   <div class="profile-info">
 
     <!-- ユーザー名 -->
@@ -39,9 +33,7 @@
 
   </div>
 
-  <!-- =========================
-    フォロー / フォロー解除ボタン
-  ========================= -->
+    <!-- フォロー / フォロー解除ボタン -->
   <div class="profile-follow-btn">
 
     @if($isFollowed)
@@ -67,9 +59,6 @@
 
 </div>
 
-<!-- =========================
-  投稿一覧
-========================= -->
 
 <div class="post-list-wrapper">
 
@@ -79,7 +68,7 @@
 
       <!-- 投稿者アイコン -->
       <div class="post-user-icon">
-        <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ $user->icon_path ? asset('storage/' . $user->icon_path) : asset('images/icon1.png') }}">
       </div>
 
       <!-- 投稿内容 -->

@@ -5,119 +5,118 @@
   <title>AtlasSNS</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
-
+  <!-- =========================
+    CSS
+  ========================= -->
   <link rel="stylesheet" href="{{ asset('css/reset.css') }}">
   <link rel="stylesheet" href="{{ asset('css/style.css') }}">
 
   @yield('css')
-
 </head>
 
 <body class="{{ request()->routeIs('profile.edit') ? 'profile-page' : '' }}">
 
-  <!-- ヘッダー -->
-
+<!-- =========================
+  ヘッダー
+========================= -->
 <header id="head">
+
   <div id="menu-area">
 
-    <!-- 左ロゴ -->
+    <!-- =========================
+      左側：Atlasロゴ
+    ========================= -->
     <div class="header-left">
-      <img src="{{ asset('images/atlas.png') }}" id="atlas-logo">
+      <a href="{{ url('/top') }}">
+        <img src="{{ asset('images/atlas.png') }}" alt="Atlas">
+      </a>
     </div>
 
-    <!-- 右メニュー -->
+    <!-- =========================
+      右側：ユーザーメニュー
+    ========================= -->
     <div class="header-right">
 
-      <!-- ユーザー名 -->
-      <span id="user-name">
-        {{ Auth::user()->username }} さん
-      </span>
+      @if(Auth::check())
 
-      <!-- 矢印ボタン -->
-      <div id="accordion-btn"></div>
+        <!-- ユーザー名 -->
+        <span id="user-name">
+          {{ Auth::user()->username }} さん
+        </span>
 
-      <!-- ユーザーアイコン -->
-      <div class="header-user-icon">
-        <img src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}">
-      </div>
+        <!-- 矢印 -->
+        <div id="accordion-btn"></div>
 
-      <!-- ドロップダウンメニュー -->
-      <ul id="accordion-menu">
+        <!-- ヘッダーアイコン -->
+        <div class="header-icon">
+          <img src="{{ Auth::user()->icon_path
+            ? asset('storage/' . Auth::user()->icon_path)
+            : asset('images/icon1.png') }}">
+        </div>
 
-        <li>
-          <a href="/top">HOME</a>
-        </li>
+        <!-- =========================
+          ドロップダウンメニュー
+        ========================= -->
+        <ul id="accordion-menu">
 
-        <li>
-          <a href="{{ route('profile.edit') }}">
-            プロフィール編集
-          </a>
-        </li>
+          <li>
+            <a href="{{ url('/top') }}"
+               class="{{ request()->is('top') ? 'active' : '' }}">
+              HOME
+            </a>
+          </li>
 
-        <li>
-          <form method="POST" action="/logout">
-            @csrf
-            <button type="submit" class="logout-btn">
-              ログアウト
-            </button>
-          </form>
-        </li>
+          <li>
+            <a href="{{ route('profile.edit') }}"
+               class="{{ request()->routeIs('profile.edit') ? 'active' : '' }}">
+              プロフィール編集
+            </a>
+          </li>
 
-      </ul>
+          <li>
+            <form method="POST" action="{{ route('logout') }}">
+              @csrf
+              <button type="submit">
+                ログアウト
+              </button>
+            </form>
+          </li>
+
+        </ul>
+
+      @endif
 
     </div>
 
   </div>
+
 </header>
 
-  <!-- メインレイアウト -->
-
+<!-- =========================
+  メインレイアウト
+========================= -->
 <div class="top-wrapper">
 
-  <!-- 左メインエリア -->
+  <!-- =========================
+    左：メイン
+  ========================= -->
   <main class="main-area">
     @yield('content')
   </main>
 
-  <!-- 右サイドバー -->
+  <!-- =========================
+    右：サイドバー
+  ========================= -->
   <aside class="side-bar">
-
-    <div id="confirm">
-
-      <p>{{ Auth::user()->username }}さんの情報</p>
-
-      <!-- フォロー -->
-      <div class="follow-block">
-        <div class="follow-row">
-          <span>フォロー数</span>
-          <span>{{ Auth::user()->follows()->count() }}人</span>
-        </div>
-        <a href="/follow-list" class="list-btn">フォローリスト</a>
-      </div>
-
-      <!-- フォロワー -->
-      <div class="follow-block">
-        <div class="follow-row">
-          <span>フォロワー数</span>
-          <span>{{ Auth::user()->followers()->count() }}人</span>
-        </div>
-        <a href="/follower-list" class="list-btn">フォロワーリスト</a>
-      </div>
-
-      <div class="under-line"></div>
-
-      <div class="btn">
-        <a href="/search">ユーザー検索</a>
-      </div>
-
-    </div>
-
+    {{-- サイドバー --}}
+    @include('layouts.sidebar')
   </aside>
 
 </div>
 
-  <!-- JS読み込み -->
-
+<!-- =========================
+  JavaScript
+========================= -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 <script src="{{ asset('js/script.js') }}"></script>
 

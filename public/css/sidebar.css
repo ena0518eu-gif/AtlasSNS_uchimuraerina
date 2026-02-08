@@ -1,9 +1,9 @@
 @charset "utf-8";
 
 /* サイドバー全体 */
+
 .side-bar {
   width: 280px;
-  /* style.css と統一 */
   padding: 20px;
   border-left: 3px solid #ddd;
   font-size: 14px;
@@ -11,6 +11,7 @@
 }
 
 /* サイドバー中身 */
+
 #confirm {
   padding: 20px;
 }
@@ -20,60 +21,39 @@
   margin-bottom: 30px;
 }
 
-/* フォロー・フォロワーブロック */
+/* フォロー・フォロワー */
+
 .follow-block {
   margin-bottom: 20px;
-  /* 個別ページ用に少し調整 */
 }
 
-/* 数字行（フォロー数・フォロワー数） */
 .follow-row {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  /* 数字を縦中央に揃える */
   margin-bottom: 15px;
-  /* 少し詰める */
   padding: 0 10px;
-  /* 右余白調整 */
 }
 
-/* フォロワーリストの下の線 */
+/* 区切り線 */
 .under-line {
   height: 1px;
   background: #ddd;
   margin: 25px 0;
 }
 
-/* フォロー・フォロワーリストボタン */
+/* ボタン */
+
 .list-btn,
 .btn a {
   display: block;
   width: 140px;
-  /* ボタン幅調整 */
   padding: 8px 0;
-
   background: #1768c4;
   color: #fff;
   text-align: center;
   text-decoration: none;
-
   border-radius: 5px;
   font-size: 14px;
-
   margin: 0 auto;
-  /* 中央寄せ */
-}
-
-/* メイン＋サイドバー レイアウト
-  ※ サイドバーがあるページのみ */
-
-.top-wrapper {
-  display: flex;
-}
-
-/* メインエリア */
-.main-area {
-  flex: 1;
-  box-sizing: border-box;
 }

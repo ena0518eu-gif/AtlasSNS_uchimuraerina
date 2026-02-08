@@ -7,15 +7,11 @@
 
 @section('content')
 
-<!-- =========================
-  検索ページ 全体ラッパー（超重要）
-========================= -->
-<div class="search-wrapper">
+  <!-- 検索ページ 全体ラッパー -->
+  <div class="search-wrapper">
 
-  <!-- =========================
-    検索フォーム
-  ========================= -->
-  <div class="search-form">
+   <!-- 検索フォーム -->
+ <div class="search-form">
     <form action="{{ url('search') }}" method="GET">
 
       <!-- 検索ワード入力 -->
@@ -34,8 +30,11 @@
     </form>
   </div>
 
-  {{-- 検索ワード表示 --}}
-  <h3>検索ワード: {{ $keyword ?? '' }}</h3>
+    <!-- 区切り線 -->
+  <div class="search-line"></div>
+
+  <!-- {{-- 検索ワード表示 --}}
+  <h3>検索ワード: {{ $keyword ?? '' }}</h3> -->
 
   {{-- 検索結果一覧 --}}
   <div class="search-result">
@@ -48,7 +47,11 @@
 
       {{-- ユーザー情報 --}}
       <div class="user-info">
-        <img src="{{ asset('images/' . $user->icon_image) }}" width="40">
+        <img
+          src="{{ $user->icon_path
+            ? asset('storage/' . $user->icon_path)
+            : asset('images/icon1.png') }}"
+        >
         <span>{{ $user->username }}</span>
       </div>
 
@@ -87,4 +90,5 @@
   </div>
 
 </div>
+
 @endsection

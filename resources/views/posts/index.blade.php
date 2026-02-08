@@ -7,15 +7,11 @@
 
 @section('content')
 
-<!-- =========================
-  左 投稿エリア（TOPページ）
-========================= -->
+  <!-- 左 投稿エリア（TOPページ） -->
 
 <div class="post-area">
 
-  <!-- =========================
-    投稿フォーム
-  ========================= -->
+   <!-- 投稿フォーム -->
 
   <div class="post-input-wrapper">
 
@@ -23,7 +19,9 @@
 
       <!-- ログインユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ Auth::user()->icon_path
+          ? asset('storage/' . Auth::user()->icon_path)
+          : asset('images/icon1.png') }}">
       </div>
 
       <!-- 投稿フォーム -->
@@ -46,23 +44,21 @@
 
   </div>
 
-  <!-- =========================
-    投稿一覧
-  ========================= -->
+    <!-- 投稿一覧 -->
 
   <div class="post-list-wrapper">
 
     @foreach($posts as $post)
 
-    <!-- =========================
-      1投稿
-    ========================= -->
+      <!-- 1投稿 -->
 
     <div class="post-item">
 
       <!-- 投稿ユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ $post->user->icon_path ? asset($post->user->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ $post->user->icon_path
+          ? asset('storage/' . $post->user->icon_path)
+          : asset('images/icon1.png') }}">
       </div>
 
       <!-- 中央：本文エリア -->
@@ -80,9 +76,7 @@
 
         @if(Auth::id() === $post->user_id)
 
-        <!-- =========================
-          編集・削除ボタン
-        ========================= -->
+          <!-- 編集・削除ボタン -->
 
         <div class="post-action">
 
@@ -121,9 +115,7 @@
 
 </div>
 
-<!-- =========================
-  編集モーダル
-========================= -->
+  <!-- 編集モーダル -->
 
 <div class="modal-overlay" id="edit-modal">
   <div class="modal-box">
@@ -148,9 +140,7 @@
   </div>
 </div>
 
-<!-- =========================
-  削除モーダル
-========================= -->
+  <!-- 削除モーダル -->
 
 <div class="modal-overlay" id="delete-modal">
   <div class="modal-box">

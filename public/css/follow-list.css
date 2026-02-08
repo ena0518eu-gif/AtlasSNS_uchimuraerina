@@ -16,7 +16,6 @@
     /* 投稿一覧との間に太線 */
     margin-bottom: 20px;
 
-    /* はみ出し防止 */
     max-width: 100%;
     box-sizing: border-box;
   }
@@ -72,10 +71,8 @@
   /* 投稿内容 */
   .post-content {
     flex: 1;
-    /* flexレイアウトでのはみ出し対策 */
     min-width: 0;
 
-    /* 投稿日時分の余白を確保 */
     padding-right: 80px;
   }
 
@@ -88,7 +85,6 @@
     color: #333;
     line-height: 1.5;
 
-    /* 長文ではみ出さないようにする */
     word-break: break-word;
   }
 
@@ -97,7 +93,6 @@
     position: absolute;
     top: 15px;
 
-    /* 右端すぎない位置に調整 */
     right: 20px;
 
     white-space: nowrap;

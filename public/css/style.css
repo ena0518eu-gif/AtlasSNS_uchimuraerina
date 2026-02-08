@@ -1,8 +1,6 @@
 @charset "utf-8";
 
-/* =========================
-  共通リセット
-========================= */
+/* 共通リセット */
 
 *,
 *::before,
@@ -23,55 +21,54 @@ body {
     font-family: "Helvetica Neue", Arial, sans-serif;
 }
 
-/* =========================
-  画像共通
-========================= */
+/* 画像共通 */
 
 img {
     display: block;
     max-width: 100%;
 }
 
-/* =========================
-  ヘッダー
-========================= */
+/* ヘッダー */
 
 #head {
-    height: 60px;
-    background: #1768c4;
+    height: 80px;
+    background: #1a66c9;
 }
 
+/* ヘッダー内レイアウト */
 #menu-area {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 60px;
-    padding: 0 20px;
+    height: 80px;
+    padding: 0 30px;
 }
 
+/* ロゴ */
 .header-left img {
-    height: 35px;
+    height: 40px;
 }
 
+/* 右側 */
 .header-right {
     display: flex;
     align-items: center;
     position: relative;
 }
 
+/* ユーザー名 */
 #user-name {
     color: #fff;
-    margin-right: 10px;
     font-size: 14px;
+    margin-right: 12px;
+    white-space: nowrap;
 }
 
-/* =========================
-  矢印
-========================= */
+/* 矢印（CSSのみ） */
 
 #accordion-btn {
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     border-right: 2px solid #fff;
     border-bottom: 2px solid #fff;
     transform: rotate(45deg);
@@ -83,158 +80,91 @@ img {
     transform: rotate(-135deg);
 }
 
-/* =========================
-  ヘッダーアイコン
-========================= */
+/* ヘッダーアイコン */
 
-.header-user-icon {
+.header-icon {
     width: 40px;
     height: 40px;
     border-radius: 50%;
     overflow: hidden;
 }
 
-.header-user-icon img {
-    width: 100%;
-    height: 100%;
+.header-icon img {
+    width: 40px;
+    height: 40px;
     object-fit: cover;
 }
 
-/* =========================
-  ドロップダウン
-========================= */
+/* ドロップダウン */
 
 #accordion-menu {
     display: none;
     position: absolute;
-    top: 60px;
+    top: 80px;
     right: 0;
-    width: 180px;
+    width: 200px;
     background: #fff;
     border: 1px solid #ddd;
     list-style: none;
     padding: 0;
+    margin: 0;
+    z-index: 1000;
 }
 
+/* メニュー項目 */
 #accordion-menu li {
-    border-bottom: 1px solid #ddd;
+    border-bottom: 1px solid #e5e5e5;
 }
 
-#accordion-menu a,
+#accordion-menu li:last-child {
+    border-bottom: none;
+}
+
+/* HOME / プロフィール */
+#accordion-menu a {
+    display: block;
+    padding: 18px 0;
+    text-align: center;
+    font-size: 14px;
+    color: #333;
+    text-decoration: none;
+}
+
+/* ログアウト */
 #accordion-menu button {
     width: 100%;
-    padding: 12px 0;
-    text-align: center;
+    padding: 18px 0;
     border: none;
     background: none;
+    font-size: 14px;
     cursor: pointer;
+    color: #333;
 }
 
-/* =========================
-  メインレイアウト
-========================= */
+/* hover */
+#accordion-menu a:hover,
+#accordion-menu button:hover {
+    background: #1a66c9;
+    color: #fff;
+}
 
+/* メインレイアウト */
+
+/* メイン＋サイドバー */
 .top-wrapper {
     display: flex;
     width: 100%;
-    height: calc(100vh - 60px);
+    min-height: calc(100vh - 80px);
 }
 
-/* =========================
-  メイン
-========================= */
-
+/* メインエリア */
 .main-area {
     flex: 1;
-    display: flex;
-    flex-direction: column;
-
-    /* flexはみ出し防止 */
-    min-width: 0;
+    padding: 40px 0;
 }
 
-/* =========================
-  サイドバー（骨格）
-========================= */
+/*サイドバー */
 .side-bar {
     width: 280px;
-    /* sidebar.cssと統一 */
     flex-shrink: 0;
-    box-sizing: border-box;
-}
-
-/* =========================
-  投稿一覧ラッパー
-========================= */
-.post-list-wrapper {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-/* =========================
-  投稿1件
-========================= */
-.post-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
-
-    /* 横はみ出し防止 */
-    max-width: 100%;
-    box-sizing: border-box;
-}
-
-/* =========================
-  ユーザーアイコン
-========================= */
-.post-user-icon {
-    margin-right: 15px;
-    flex-shrink: 0;
-    /* 縮まないようにする */
-}
-
-.post-user-icon img {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-}
-
-/* =========================
-  投稿内容
-========================= */
-.post-content {
-    flex: 1;
-
-    /* flexレイアウトでのはみ出し対策（超重要） */
-    min-width: 0;
-}
-
-.post-username {
-    font-weight: bold;
-    margin-bottom: 5px;
-}
-
-.post-text {
-    color: #333;
-    line-height: 1.5;
-
-    /* 長文ではみ出さないようにする */
-    word-break: break-word;
-}
-
-/* =========================
-  右側：投稿日
-========================= */
-.post-right {
-    margin-left: 15px;
-    white-space: nowrap;
-    flex-shrink: 0;
-    /* 押し潰されないように */
-}
-
-.post-date {
-    font-size: 12px;
-    color: #888;
 }
