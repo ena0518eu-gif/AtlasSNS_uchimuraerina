@@ -15,25 +15,33 @@
 
     <p class="login-title">AtlasSNSへようこそ</p>
 
-    <form method="POST" action="{{ route('login') }}">
-      @csrf
+<form method="POST" action="{{ route('login') }}">
+  @csrf
 
-      <div class="form-group">
-        <label>メールアドレス</label>
-        <input class="login-input" type="email" name="email">
-      </div>
+  <div class="form-group">
+    <label>メールアドレス</label>
+    <input class="login-input" type="email" name="email" value="{{ old('email') }}" required>
+    @error('email')
+      <span class="mt-2">{{ $message }}</span>
+    @enderror
+  </div>
 
-      <div class="form-group">
-        <label>パスワード</label>
-        <input class="login-input" type="password" name="password">
-      </div>
+  <div class="form-group">
+    <label>パスワード</label>
+    <input class="login-input" type="password" name="password" required>
+    @error('password')
+      <span class="mt-2">{{ $message }}</span>
+    @enderror
+  </div>
 
-      <button class="login-btn" type="submit">
-        ログイン
-      </button>
+  @if(session('error'))
+    <div class="mt-2">{{ session('error') }}</div>
+  @endif
 
-    </form>
-
+  <button class="login-btn" type="submit">
+    ログイン
+  </button>
+</form>
     <a class="register-link" href="/register">
       新規ユーザーの方はこちら
     </a>

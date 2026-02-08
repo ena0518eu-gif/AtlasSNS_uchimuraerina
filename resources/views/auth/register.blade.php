@@ -40,7 +40,7 @@
       </div>
 
       <button class="login-btn" type="submit">
-        登録
+        新規登録
       </button>
 
     </form>

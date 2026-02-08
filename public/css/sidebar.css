@@ -2,78 +2,64 @@
 
 /* サイドバー全体 */
 .side-bar {
-  width: 280px;
-  /* style.css と統一 */
-  padding: 20px;
-  border-left: 3px solid #ddd;
-  font-size: 14px;
-  box-sizing: border-box;
+  width: 300px;
+  border-left: 3px solid #cfcfcf;
+  background: #ffffff;
+  padding: 40px 25px;
 }
 
-/* サイドバー中身 */
-#confirm {
-  padding: 20px;
-}
-
-/* タイトル */
-#confirm p {
-  margin-bottom: 30px;
-}
-
-/* フォロー・フォロワーブロック */
+/* 各ブロック */
 .follow-block {
-  margin-bottom: 20px;
-  /* 個別ページ用に少し調整 */
+  margin-bottom: 35px;
 }
 
-/* 数字行（フォロー数・フォロワー数） */
+/* フォロー行 */
 .follow-row {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  /* 数字を縦中央に揃える */
-  margin-bottom: 15px;
-  /* 少し詰める */
-  padding: 0 10px;
-  /* 右余白調整 */
+  margin-bottom: 18px;
+  font-size: 14px;
+  color: #444;
 }
 
-/* フォロワーリストの下の線 */
+/* ●●人 */
+.count {
+  margin-left: auto;
+  margin-right: 100px;
+}
+
+/* 区切り線 */
 .under-line {
   height: 1px;
-  background: #ddd;
-  margin: 25px 0;
+  background: #e5e5e5;
+  margin: 35px -25px;
 }
 
-/* フォロー・フォロワーリストボタン */
-.list-btn,
-.btn a {
+/* ボタン */
+.list-btn {
   display: block;
-  width: 140px;
-  /* ボタン幅調整 */
-  padding: 8px 0;
-
+  width: 150px;
+  padding: 9px 0;
   background: #1768c4;
   color: #fff;
   text-align: center;
+  border-radius: 6px;
   text-decoration: none;
-
-  border-radius: 5px;
   font-size: 14px;
+  transition: 0.2s;
+}
 
+/* フォロー・フォロワーは右寄せ */
+.right-btn {
+  margin-left: auto;
+}
+
+/* ユーザー検索は中央寄せ */
+.center-btn {
   margin: 0 auto;
-  /* 中央寄せ */
 }
 
-/* メイン＋サイドバー レイアウト
-  ※ サイドバーがあるページのみ */
-
-.top-wrapper {
-  display: flex;
-}
-
-/* メインエリア */
-.main-area {
-  flex: 1;
-  box-sizing: border-box;
+/* ホバー */
+.list-btn:hover {
+  background: #145aa8;
 }

@@ -1,30 +1,69 @@
-/* =========================
-   検索フォーム
-========================= */
+/* 検索ページ 全体 */
+.search-wrapper {
+  width: 100%;
+  padding: 40px 0 0;
+}
+
+/* 検索フォーム（左寄せ） */
 .search-form {
-  padding: 30px;
+  width: 900px;
+  margin-left: 40px;
+  padding-bottom: 25px;
 }
 
 .search-form form {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 18px;
+  width: 100%;
 }
 
+/* ユーザー名入力欄 */
 .search-form input {
   width: 300px;
-  padding: 8px;
+  height: 48px;
+  padding: 10px 18px;
+  border: 1px solid #ccc;
+  font-size: 16px;
+}
+
+/* 検索ボタン */
+.search-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
 }
 
 .search-btn img {
-  width: 60px;
+  width: 44px;
 }
 
-/* =========================
-   検索結果
-========================= */
+/* 検索ワード表示 */
+.search-word {
+  font-size: 16px;
+  font-weight: 400;
+
+  margin-left: auto;
+
+  padding-left: 30px;
+
+  display: flex;
+  align-items: center;
+  height: 44px;
+  white-space: nowrap;
+}
+
+/* 区切り線 */
+.search-line {
+  width: 100%;
+  height: 6px;
+  background: #e5e5e5;
+}
+
+/* 検索結果（中央寄せ） */
 .search-result {
-  padding: 0 30px;
+  width: 600px;
+  margin: 40px auto 0;
 }
 
 /* 1ユーザー行 */
@@ -32,57 +71,52 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  width: 600px;
-  margin-bottom: 25px;
+  padding: 25px 0;
 }
 
-/* 左側（アイコン＋名前） */
+/* 左側（アイコン,名前） */
 .user-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 
 .user-info img {
-  width: 50px;
-  height: 50px;
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
 }
 
-/* ボタンエリア */
-.follow-btn-area button {
-  width: 110px;
-  padding: 6px 0;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  color: #fff;
+.user-info span {
+  font-size: 16px;
+  max-width: 180px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
-/* フォロー */
+/* ボタンエリア */
+.follow-btn-area {
+  width: 150px;
+  text-align: right;
+}
+
+.follow-btn-area button {
+  width: 130px;
+  padding: 8px 0;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  color: #fff;
+  font-size: 14px;
+}
+
+/* フォローする */
 .follow-btn {
-  background: #1768c4;
+  background-color: #1768c4;
 }
 
 /* フォロー解除 */
 .unfollow-btn {
-  background: #999;
-}
-
-.search-wrapper {
-  padding: 40px 60px;
-}
-
-/* =========================
-   検索エリアを見本位置に固定
-========================= */
-.search-wrapper {
-  width: 700px;
-  margin: 40px auto 0;
-}
-
-.search-line {
-  height: 3px;
-  background: #ddd;
-  margin: 25px 0 35px;
+  background-color: #e74c3c;
 }

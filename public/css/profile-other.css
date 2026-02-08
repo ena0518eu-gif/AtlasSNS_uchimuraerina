@@ -1,65 +1,259 @@
-/* プロフィール */
+@charset "utf-8";
 
-.profile-wrap {
+/* プロフィール編集画面 */
+
+/* ページ全体 */
+.profile-page {
+  width: 100%;
+}
+
+/* プロフィール外枠 */
+.profile-area {
+  width: 100%;
+  padding: 0 40px;
+  /* ← サイドバー考慮 */
+}
+
+/* 白カード */
+.profile-card {
+  width: 100%;
+  max-width: none;
+  margin: 0;
+  background: #fff;
+  padding: 30px 50px;
+  border-radius: 0;
+  box-sizing: border-box;
+  border-bottom: none;
+}
+
+/* プロフィール全体（横並び） */
+.profile-wrapper {
   display: flex;
   align-items: flex-start;
-  padding: 40px 40px;
-  gap: 40px;
+  gap: 60px;
 }
 
-/* 左：プロフィールアイコン */
-.profile-icon img {
-  width: 120px;
-  height: 120px;
+/* 左：ユーザーアイコン */
+.profile-icon-area {
+  width: 160px;
+  flex-shrink: 0;
+}
+
+.profile-icon-area img {
+  width: 60px;
+  height: 60px;
   border-radius: 50%;
+  object-fit: cover;
 }
 
-/* 右：フォーム */
-.profile-form {
+/* 右：プロフィール編集フォーム */
+.profile-form-area {
   flex: 1;
-  max-width: 600px;
 }
 
-/* 1行ずつ */
-.profile-row {
-  display: flex;
+/* フォーム1行 */
+.profile-form-area .form-group {
+  display: grid;
+  grid-template-columns: 160px 1fr;
   align-items: center;
-  margin-bottom: 18px;
+  margin-bottom: 22px;
 }
 
 /* ラベル */
-.profile-row label {
-  width: 140px;
+.profile-form-area label {
+  font-size: 14px;
+  color: #555;
+}
+
+/* input / textarea 共通 */
+.profile-form-area input,
+.profile-form-area textarea {
+  width: 100%;
+  padding: 8px 10px;
+  font-size: 14px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  box-sizing: border-box;
+}
+
+/* textarea */
+.profile-form-area textarea {
+  height: 120px;
+  resize: none;
+}
+
+/* ファイル選択用 */
+.file-box {
+  width: 100%;
+  height: 110px;
+  border: 1px solid #ccc;
+  background-color: #eee;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  position: relative;
+}
+
+/* ファイル入力ボタン */
+.file-input {
+  background: #fff;
+  padding: 8px 16px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+}
+
+.file-box input[type="file"] {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  cursor: pointer;
+}
+
+/* 更新ボタン */
+.profile-form-area .form-btn {
+  margin-top: 40px;
+  text-align: center;
+}
+
+.update-btn {
+  width: 180px;
+  height: 44px;
+  background-color: #e74c3c !important;
+  color: #fff !important;
+  border: none !important;
+  border-radius: 6px;
+  font-size: 15px;
+  cursor: pointer;
+}
+
+/* hover */
+.update-btn:hover {
+  opacity: 0.9;
+}
+
+
+
+/* ▼相手プロフィール表示画面 */
+
+/* プロフィール横並び */
+.profile-wrap {
+  display: flex;
+  align-items: center;
+  gap: 30px;
+  padding-bottom: 25px;
+
+  border-bottom: 4px solid #dcdcdc;
+}
+
+/* 左：アイコン */
+.profile-icon {
+  width: 70px;
+}
+
+.profile-icon img {
+  width: 55px;
+  height: 55px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+/* 中央：ユーザー情報 */
+.profile-info {
+  flex: 1;
+}
+
+/* ユーザー名・自己紹介 共通 */
+.profile-name,
+.profile-bio {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 8px;
+  font-size: 15px;
+}
+
+/* ラベル  */
+.profile-label {
+  width: 90px;
+  color: #000;
+}
+
+/* 値 */
+.profile-value {
+  color: #000;
+  font-weight: 500;
+}
+
+/* 右：フォローボタン */
+.profile-follow-btn {
+  width: 160px;
+  text-align: right;
+}
+
+/* フォロー */
+.follow-btn {
+  background: #2e6bdc;
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+/* フォロー解除 */
+.unfollow-btn {
+  background: #e74c3c;
+  color: #fff;
+  border: none;
+  padding: 9px 18px;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+
+
+/* 投稿一覧 */
+
+.post-item {
+  display: flex;
+  align-items: center;
+  padding: 18px 0;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.post-user-icon {
+  width: 70px;
+  margin-left: 95px;
+}
+
+.post-user-icon img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.post-content {
+  flex: 1;
+  padding-right: 10px;
+}
+
+.post-username {
+  font-weight: bold;
+  font-size: 15px;
+  margin-bottom: 4px;
+}
+
+.post-text {
   font-size: 14px;
   color: #333;
 }
 
-/* input / textarea */
-.profile-row input,
-.profile-row textarea {
-  flex: 1;
-  padding: 8px 10px;
-  font-size: 14px;
-  border: 1px solid #ccc;
-}
-
-/* textarea */
-.profile-row textarea {
-  height: 80px;
-  resize: none;
-}
-
-/* 更新ボタン */
-.profile-btn {
+.post-right {
+  width: 180px;
+  margin-left: -40px;
   text-align: right;
-  margin-top: 30px;
-}
-
-.profile-btn button {
-  width: 120px;
-  height: 36px;
-  background: #1768c4;
-  color: #fff;
-  border: none;
-  cursor: pointer;
+  font-size: 13px;
+  color: #999;
 }

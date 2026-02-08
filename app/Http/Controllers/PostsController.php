@@ -45,9 +45,14 @@ class PostsController extends Controller
     // =========================
     public function store(PostRequest $request)
     {
+        // =========================
+        // 150文字以上は保存不可（サーバー側制御）
+        // =========================
+        $postContent = mb_substr($request->post, 0, 150);
+
         Post::create([
             'user_id' => auth()->id(),
-            'post' => $request->post,
+            'post' => $postContent,
         ]);
 
         return redirect()->back();
@@ -58,10 +63,10 @@ class PostsController extends Controller
     // =========================
     public function update(Request $request, $id)
     {
-        // バリデーション
-        $request->validate([
-            'post' => 'required|min:1|max:150',
-        ]);
+        // =========================
+        // 150文字以上は保存不可（サーバー側制御）
+        // =========================
+        $postContent = mb_substr($request->post, 0, 150);
 
         // =========================
         // 自分の投稿のみ更新
@@ -69,7 +74,7 @@ class PostsController extends Controller
         Post::where('id', $id)
             ->where('user_id', auth()->id())
             ->update([
-                'post' => $request->post
+                'post' => $postContent
             ]);
 
         return redirect('/top');

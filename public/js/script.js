@@ -1,8 +1,6 @@
 $(function () {
 
-  /* =========================
-     アコーディオンメニュー
-  ========================= */
+  //  アコーディオンメニュー
 
   $('#accordion-btn').on('click', function () {
     $('#accordion-menu').stop(true, true).slideToggle(200);
@@ -10,9 +8,7 @@ $(function () {
   });
 
 
-  /* =========================
-     編集モーダル表示
-  ========================= */
+  //  編集モーダル表示
 
   $(document).on('click', '.js-edit-open', function () {
 
@@ -26,14 +22,12 @@ $(function () {
     $('#edit-form').attr('action', '/posts/' + id);
 
     // モーダル表示
-    $('#edit-modal').fadeIn(200);
+    $('#edit-modal').addClass('active');
 
   });
 
 
-  /* =========================
-     削除モーダル表示
-  ========================= */
+  //  削除モーダル表示
 
   $(document).on('click', '.js-delete-open', function () {
 
@@ -43,19 +37,20 @@ $(function () {
     $('#delete-form').attr('action', '/posts/' + id);
 
     // モーダル表示
-    $('#delete-modal').fadeIn(200);
+    $('#delete-modal').addClass('active');
 
   });
 
 
-  /* =========================
-     モーダル閉じる
-  ========================= */
+  //  モーダル閉じる
 
   $('.js-modal-close, .modal-overlay').on('click', function (e) {
 
     if ($(e.target).hasClass('modal-overlay') || $(e.target).hasClass('js-modal-close')) {
-      $('.modal-overlay').fadeOut(200);
+
+      // モーダル非表示
+      $('.modal-overlay').removeClass('active');
+
     }
 
   });

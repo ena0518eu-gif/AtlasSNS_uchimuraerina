@@ -1,255 +1,238 @@
-  /* 投稿エリア全体（TOPページ） */
+  /* 左 投稿エリア */
 
   .post-area {
-    display: flex;
-    flex-direction: column;
-    height: 100%;
+    width: 100%;
+    background: #ffffff;
+    overflow-y: auto;
   }
 
   /* 投稿フォーム */
-
   .post-input-wrapper {
-    padding: 20px;
-    border-bottom: 3px solid #e0e0e0;
+    padding: 25px 40px;
+    border-bottom: 4px solid #cfcfcf;
+    background: #fafafa;
   }
 
   .post-input-area {
     display: flex;
-    align-items: flex-start;
+    align-items: center;
+    gap: 20px;
+  }
+
+  /* 投稿フォーム横並び */
+  .post-form-inner {
+    display: flex;
+    flex: 1;
     gap: 15px;
   }
 
-  /* ログインユーザーアイコン */
+  /* アイコン */
   .post-user-icon img {
-    width: 50px;
-    height: 50px;
+    width: 60px;
+    height: 60px;
     border-radius: 50%;
     object-fit: cover;
   }
 
-  /* 投稿フォーム */
-  .post-form-inner {
-    flex: 1;
-    display: flex;
-    align-items: flex-end;
-    gap: 10px;
-  }
-
+  /*
+  入力欄 */
   .post-form-inner textarea {
     flex: 1;
-    height: 60px;
+    height: 70px;
+    border: none;
+    padding: 12px 0;
     resize: none;
-    padding: 10px;
-    border: 1px solid #ccc;
     font-size: 14px;
+    background: transparent;
+    outline: none;
   }
 
-  .post-form-inner button {
+  /* 投稿ボタン */
+  .post-submit {
     background: none;
     border: none;
+    padding: 0;
+    display: flex;
+    align-items: center;
+  }
+
+  .post-submit img {
+    width: 50px;
+    height: 50px;
     cursor: pointer;
   }
 
-  .post-form-inner button img {
-    width: 40px;
-  }
-
-  /* =========================
-  投稿一覧
-========================= */
-
+  /* 投稿一覧 */
   .post-list-wrapper {
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  /* 1投稿 */
-  .post-item {
-    display: flex;
-    gap: 15px;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  /* 投稿内容 */
-  .post-content {
-    flex: 1;
-  }
-
-  .post-username {
-    font-weight: bold;
-    margin: 0 0 5px 0;
-    font-size: 14px;
-  }
-
-  .post-text {
-    margin: 0;
-    font-size: 14px;
-    word-break: break-word;
-  }
-
-  /* 右側エリア */
-  .post-right {
-    min-width: 120px;
-    text-align: right;
-  }
-
-  /* 投稿日時 */
-  .post-date {
-    font-size: 12px;
-    color: #888;
-    margin-bottom: 10px;
-  }
-
-  /* 編集・削除ボタン */
-
-  .post-action {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-
-  .edit-btn,
-  .delete-btn {
-    background: none;
-    border: none;
-    cursor: pointer;
-    position: relative;
-  }
-
-  /* ホバー切替 */
-  .edit-icon.hover,
-  .delete-icon.hover {
-    display: none;
-  }
-
-  .edit-btn:hover .normal,
-  .delete-btn:hover .normal {
-    display: none;
-  }
-
-  .edit-btn:hover .hover,
-  .delete-btn:hover .hover {
-    display: inline;
-  }
-
-  /* モーダル（編集・削除） */
-  .modal-overlay {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.5);
-    justify-content: center;
-    align-items: center;
-    z-index: 1000;
-  }
-
-  .modal-box {
-    background: #fff;
-    padding: 20px;
-    width: 400px;
-  }
-
-  .modal-box textarea {
     width: 100%;
-    height: 100px;
-    resize: none;
-    padding: 10px;
-    border: 1px solid #ccc;
   }
 
-  /* ボタンエリア */
-  .modal-btn-area {
-    text-align: right;
-    margin-top: 15px;
-  }
-
-  .modal-ok {
-    background: #1768c4;
-    color: #fff;
-    border: none;
-    padding: 6px 14px;
-    cursor: pointer;
-  }
-
-  .modal-cancel {
-    background: #ccc;
-    border: none;
-    padding: 6px 14px;
-    margin-left: 8px;
-    cursor: pointer;
-  }
-
-  /* 削除テキスト */
-  .delete-text {
-    margin-bottom: 20px;
-  }
-
-  /* 投稿1件の横並び */
+  /* 投稿1件 */
   .post-item {
     display: flex;
-    gap: 15px;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
-  /* 右側の全体 */
-  .post-main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-  }
-
-  /* 名前と日付を同じ行に */
-  .post-header {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    margin-bottom: 8px;
-  }
-
-  .post-username {
-    font-weight: bold;
-    font-size: 14px;
-  }
-
-  .post-date {
-    font-size: 12px;
-    color: #888;
+    gap: 20px;
+    padding: 30px 40px;
+    border-bottom: 1px solid #e0e0e0;
   }
 
   /* 本文 */
-  .post-text {
-    font-size: 14px;
-    margin-bottom: 10px;
-  }
-
-  /* 編集削除を右に寄せる */
-  .post-action {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-  }
-
-  .post-item {
-    display: flex;
-    padding: 20px;
-    border-bottom: 1px solid #ddd;
-  }
-
   .post-main {
     flex: 1;
-    margin-left: 15px;
+    position: relative;
   }
 
+  .post-username {
+    font-weight: bold;
+    margin-bottom: 6px;
+    font-size: 14px;
+  }
+
+  .post-text {
+    font-size: 14px;
+    line-height: 1.7;
+    color: #333;
+    white-space: pre-wrap;
+  }
+
+  /* 右エリア */
   .post-side {
-    width: 130px;
+    width: 160px;
     text-align: right;
   }
 
+  .post-date {
+    font-size: 11px;
+    color: #9a9a9a;
+  }
+
+  /* 編集削除エリア */
   .post-action {
     margin-top: 10px;
     display: flex;
     justify-content: flex-end;
-    gap: 10px;
+    gap: 12px;
+  }
+
+  /* 編集削除ボタン本体 */
+  .edit-btn,
+  .delete-btn {
+    position: relative;
+    width: 28px;
+    height: 28px;
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+
+  /* アイコン画像（重ねる） */
+  .edit-btn img,
+  .delete-btn img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 28px;
+    height: 28px;
+    transition: opacity 0.2s ease;
+  }
+
+  /* 通常アイコン */
+  .normal {
+    opacity: 1;
+  }
+
+  /* ホバーアイコン */
+  .hover {
+    opacity: 0;
+  }
+
+  /* ホバー時 色反転 */
+  .edit-btn:hover .normal,
+  .delete-btn:hover .normal {
+    opacity: 0;
+  }
+
+  .edit-btn:hover .hover,
+  .delete-btn:hover .hover {
+    opacity: 1;
+  }
+
+  /* ホバー時 少し拡大 */
+  .edit-btn:hover,
+  .delete-btn:hover {
+    transform: scale(1.05);
+  }
+
+  /* モーダル共通 */
+  .modal-overlay {
+    display: none;
+    /* ←最初は非表示 */
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.4);
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+  }
+
+  /* 表示時 */
+  .modal-overlay.active {
+    display: flex;
+  }
+
+  /* モーダル本体 */
+  .modal-box {
+    width: 450px;
+    background: #fff;
+    padding: 30px;
+    border-radius: 6px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    text-align: center;
+  }
+
+  /* textarea */
+  #edit-post {
+    width: 100%;
+    height: 100px;
+    border: 2px solid #cfcfcf;
+    padding: 10px;
+    resize: none;
+    margin-bottom: 20px;
+  }
+
+  /* ボタンエリア */
+  .modal-btn-area {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  /* OKボタン */
+  .modal-ok {
+    width: 100px;
+    padding: 8px 0;
+    background: #1768c4;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* キャンセル */
+  .modal-cancel {
+    width: 100px;
+    padding: 8px 0;
+    background: #eee;
+    border: 1px solid #aaa;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+
+  /* 削除メッセージ */
+  .delete-text {
+    font-size: 14px;
+    margin-bottom: 35px;
   }

@@ -3,45 +3,37 @@
 @section('content')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
-<link rel="stylesheet" href="{{ asset('css/profile_edit.css') }}">
+<link rel="stylesheet" href="{{ asset('css/profile-other.css') }}">
 @endsection
 
 
-<!-- =========================
-  相手プロフィール全体
-========================= -->
+  <!-- 相手プロフィール全体 -->
 
 <div class="profile-wrap profile-card">
 
-  <!-- =========================
-    左：ユーザーアイコン
-  ========================= -->
+    <!-- 左：ユーザーアイコン -->
   <div class="profile-icon">
-    <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+    <img src="{{ $user->icon_path ? asset('storage/' . $user->icon_path) : asset('images/icon1.png') }}">
   </div>
 
-  <!-- =========================
-    右：ユーザー情報
-  ========================= -->
+    <!-- 中央：ユーザー情報 -->
   <div class="profile-info">
 
     <!-- ユーザー名 -->
     <div class="profile-name">
       <span class="profile-label">ユーザー名</span>
-      {{ $user->username }}
+      <span class="profile-value">{{ $user->username }}</span>
     </div>
 
     <!-- 自己紹介 -->
     <div class="profile-bio">
       <span class="profile-label">自己紹介</span>
-      {{ $user->bio }}
+      <span class="profile-value">{{ $user->bio }}</span>
     </div>
 
   </div>
 
-  <!-- =========================
-    フォロー / フォロー解除ボタン
-  ========================= -->
+    <!-- 右：フォロー / フォロー解除ボタン -->
   <div class="profile-follow-btn">
 
     @if($isFollowed)
@@ -67,19 +59,19 @@
 
 </div>
 
-<!-- =========================
-  投稿一覧
-========================= -->
+
+  <!-- 投稿一覧 -->
 
 <div class="post-list-wrapper">
 
   @foreach ($user->posts as $post)
 
+    <!-- 投稿1件 -->
     <div class="post-item">
 
       <!-- 投稿者アイコン -->
       <div class="post-user-icon">
-        <img src="{{ $user->icon_path ? asset($user->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ $user->icon_path ? asset('storage/' . $user->icon_path) : asset('images/icon1.png') }}">
       </div>
 
       <!-- 投稿内容 -->

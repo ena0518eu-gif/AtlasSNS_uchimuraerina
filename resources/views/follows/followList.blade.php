@@ -12,11 +12,13 @@
 
   <!-- フォローアイコン一覧（上部） -->
 <div class="follow-icon-area">
-  @foreach($followedUsersPosts as $user)
+  @foreach($posts->unique('user_id') as $post)
     <!-- ユーザーアイコン（プロフィールリンク） -->
-    <a href="{{ url('/profile/' . $user->id) }}">
+    <a href="{{ url('/profile/' . $post->user->id) }}">
       <img
-        src="{{ asset('images/' . $user->icon_image) }}"
+        src="{{ $post->user->icon_path
+          ? asset('storage/' . $post->user->icon_path)
+          : asset('images/icon1.png') }}"
         class="follow-icon"
       >
     </a>
@@ -25,14 +27,17 @@
 
   <!-- 投稿一覧 -->
 <div class="post-list-wrapper">
-  @foreach($followedUsersPosts as $followedUser)
-    @foreach($followedUser->posts as $post)
+  @foreach($posts as $post)
       <!-- 投稿1件 -->
       <div class="post-item">
         <!-- ユーザーアイコン -->
         <div class="post-user-icon">
-          <a href="{{ url('/profile/' . $followedUser->id) }}">
-            <img src="{{ asset('images/' . $followedUser->icon_image) }}">
+          <a href="{{ url('/profile/' . $post->user->id) }}">
+            <img
+              src="{{ $post->user->icon_path
+                ? asset('storage/' . $post->user->icon_path)
+                : asset('images/icon1.png') }}"
+            >
           </a>
         </div>
 
@@ -40,7 +45,7 @@
         <div class="post-content">
           <!-- ユーザー名 -->
           <p class="post-username">
-            {{ $followedUser->username }}
+            {{ $post->user->username }}
           </p>
           <!-- 投稿本文 -->
           <p class="post-text">
@@ -55,7 +60,6 @@
           </span>
         </div>
       </div>
-    @endforeach
   @endforeach
 </div>
 

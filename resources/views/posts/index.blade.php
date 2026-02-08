@@ -7,23 +7,19 @@
 
 @section('content')
 
-<!-- =========================
-  左 投稿エリア（TOPページ）
-========================= -->
-
+  <!-- 投稿エリア（TOPページ） -->
 <div class="post-area">
 
-  <!-- =========================
-    投稿フォーム
-  ========================= -->
-
+    <!-- 投稿フォーム -->
   <div class="post-input-wrapper">
 
     <div class="post-input-area">
 
       <!-- ログインユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ Auth::user()->icon_path
+          ? asset('storage/' . Auth::user()->icon_path)
+          : asset('images/icon1.png') }}">
       </div>
 
       <!-- 投稿フォーム -->
@@ -36,7 +32,7 @@
           placeholder="投稿内容を入力してください。"
         ></textarea>
 
-        <button type="submit">
+        <button type="submit" class="post-submit">
           <img src="{{ asset('images/post.png') }}">
         </button>
 
@@ -46,23 +42,19 @@
 
   </div>
 
-  <!-- =========================
-    投稿一覧
-  ========================= -->
-
+    <!-- 投稿一覧 -->
   <div class="post-list-wrapper">
 
     @foreach($posts as $post)
 
-    <!-- =========================
-      1投稿
-    ========================= -->
-
+      <!-- 1投稿 -->
     <div class="post-item">
 
       <!-- 投稿ユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ $post->user->icon_path ? asset($post->user->icon_path) : asset('images/icon1.png') }}">
+        <img src="{{ $post->user->icon_path
+          ? asset('storage/' . $post->user->icon_path)
+          : asset('images/icon1.png') }}">
       </div>
 
       <!-- 中央：本文エリア -->
@@ -80,10 +72,7 @@
 
         @if(Auth::id() === $post->user_id)
 
-        <!-- =========================
-          編集・削除ボタン
-        ========================= -->
-
+        <!-- 編集・削除ボタン -->
         <div class="post-action">
 
           <!-- 編集ボタン -->
@@ -91,7 +80,7 @@
             type="button"
             class="edit-btn js-edit-open"
             data-id="{{ $post->id }}"
-            data-post="{{ $post->post }}"
+            data-post="{{ e($post->post) }}"
           >
             <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
             <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
@@ -121,37 +110,31 @@
 
 </div>
 
-<!-- =========================
-  編集モーダル
-========================= -->
 
+  <!-- 編集モーダル -->
 <div class="modal-overlay" id="edit-modal">
   <div class="modal-box">
-
     <form method="POST" id="edit-form">
       @csrf
       @method('PUT')
 
-      <textarea
-        name="post"
-        id="edit-post"
-        maxlength="150"
-      ></textarea>
+      <textarea id="edit-post" name="post" maxlength="150"></textarea>
 
       <div class="modal-btn-area">
-        <button type="submit" class="modal-ok">OK</button>
-        <button type="button" class="modal-cancel js-modal-close">キャンセル</button>
+
+        <!--  hover切替 -->
+        <button type="submit" class="edit-btn modal-edit-btn">
+          <img src="{{ asset('images/edit.png') }}" class="normal">
+          <img src="{{ asset('images/edit_h.png') }}" class="hover">
+        </button>
+
       </div>
-
     </form>
-
   </div>
 </div>
 
-<!-- =========================
-  削除モーダル
-========================= -->
 
+  <!-- 削除モーダル -->
 <div class="modal-overlay" id="delete-modal">
   <div class="modal-box">
 
@@ -167,7 +150,6 @@
         <button type="submit" class="modal-ok">OK</button>
         <button type="button" class="modal-cancel js-modal-close">キャンセル</button>
       </div>
-
     </form>
 
   </div>

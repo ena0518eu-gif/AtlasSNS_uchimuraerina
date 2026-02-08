@@ -17,10 +17,19 @@ class FollowsController extends Controller
 
         // ユーザーがフォローしているユーザーの投稿を取得
         // with('posts') で投稿も同時取得
-        $followedUsersPosts = $user->follows()->with('posts')->get();  // 投稿も取得
+        // ↓↓↓ 投稿単位で取得するように修正 ↓↓↓
+
+        // フォローしているユーザーIDを取得
+        $followIds = $user->follows()->pluck('users.id');
+
+        // フォローしているユーザーの投稿を新しい順で取得
+        $posts = Post::with('user')
+            ->whereIn('user_id', $followIds)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         // ビューに渡す
-        return view('follows.followList', compact('followedUsersPosts'));
+        return view('follows.followList', compact('posts'));
     }
 
     // フォロワー一覧表示
@@ -30,10 +39,18 @@ class FollowsController extends Controller
         $user = Auth::user();
 
         // ユーザーをフォローしているユーザー＋投稿を取得
-        $followersPosts = $user->followers()->with('posts')->get();  // 投稿も取得
+
+        // フォロワーのIDを取得
+        $followerIds = $user->followers()->pluck('users.id');
+
+        // フォロワーの投稿を新しい順で取得
+        $posts = Post::with('user')
+            ->whereIn('user_id', $followerIds)
+            ->orderBy('created_at', 'desc')
+            ->get();
 
         // ビューに渡す
-        return view('follows.followerList', compact('followersPosts'));
+        return view('follows.followerList', compact('posts'));
     }
 
     // フォローする処理
@@ -43,7 +60,7 @@ class FollowsController extends Controller
 
         // すでにフォローしていない場合にフォローする
         if (!$user->follows()->where('followed_id', $userId)->exists()) {
-            $user->follows()->attach($userId); // 中間テーブルにレコードを追加
+            $user->follows()->attach($userId);
         }
 
         // フォロー後、前のページに戻る
@@ -57,7 +74,7 @@ class FollowsController extends Controller
 
         // フォローしている場合は解除する
         if ($user->follows()->where('followed_id', $userId)->exists()) {
-            $user->follows()->detach($userId); // 中間テーブルからレコードを削除
+            $user->follows()->detach($userId);
         }
 
         // フォロー解除後、前のページに戻る
