@@ -9,7 +9,6 @@
   <!-- フォロー一覧 -->
 
 <h2 class="follow-title">フォローリスト</h2>
-
   <!-- フォローアイコン一覧（上部） -->
 <div class="follow-icon-area">
   @foreach($posts->unique('user_id') as $post)
