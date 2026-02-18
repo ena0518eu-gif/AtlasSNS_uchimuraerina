@@ -59,6 +59,7 @@
     margin-top: 4px;
     color: #fff;
     font-size: 30px;
+    font-weight: bold;
 }
 
 /* ログインカード */
@@ -82,7 +83,7 @@
 
 .login-title {
     font-size: 16px;
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 18px;
 }
 
@@ -192,7 +193,17 @@
 .added-username {
     font-size: 18px;
     font-weight: bold;
-    margin-bottom: 12px;
+    margin-bottom: 6px;
+}
+
+/* ようこそメッセージ */
+
+.added-welcome {
+    font-size: 18px;
+    /* ユーザー名と同じ */
+    font-weight: bold;
+    margin-bottom: 70px;
+    /* 完了メッセージとの間隔 */
 }
 
 /* メッセージ */
@@ -206,7 +217,7 @@
 
 .added-btn {
     display: inline-block;
-    margin-top: 18px;
+    margin-top: 30px;
 
     padding: 10px 24px;
 
@@ -214,7 +225,7 @@
     color: #fff;
 
     text-decoration: none;
-    border-radius: 20px;
+    border-radius: 10px;
 
     font-size: 13px;
 }
@@ -233,4 +244,10 @@
 .auth-logo img {
     width: 150px;
     height: auto;
+}
+
+.error {
+    color: red;
+    font-size: 13px;
+    margin-top: 5px;
 }

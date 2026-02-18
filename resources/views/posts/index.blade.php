@@ -17,8 +17,8 @@
 
       <!-- ログインユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ Auth::user()->icon_path
-          ? asset('storage/' . Auth::user()->icon_path)
+        <img src="{{ Auth::user()->icon_image
+          ? asset('storage/' . Auth::user()->icon_image)
           : asset('images/icon1.png') }}">
       </div>
 
@@ -26,11 +26,22 @@
       <form action="/posts" method="POST" class="post-form-inner">
         @csrf
 
-        <textarea
-          name="post"
-          maxlength="150"
-          placeholder="投稿内容を入力してください。"
-        ></textarea>
+        <div style="flex:1;">
+
+          <textarea
+            name="post"
+            maxlength="150"
+            placeholder="投稿内容を入力してください。"
+          >{{ old('post') }}</textarea>
+
+          {{-- エラーメッセージ --}}
+          @if ($errors->has('post'))
+            <p class="error-message">
+              {{ $errors->first('post') }}
+            </p>
+          @endif
+
+        </div>
 
         <button type="submit" class="post-submit">
           <img src="{{ asset('images/post.png') }}">
@@ -52,8 +63,8 @@
 
       <!-- 投稿ユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ $post->user->icon_path
-          ? asset('storage/' . $post->user->icon_path)
+        <img src="{{ $post->user->icon_image
+          ? asset('storage/' . $post->user->icon_image)
           : asset('images/icon1.png') }}">
       </div>
 

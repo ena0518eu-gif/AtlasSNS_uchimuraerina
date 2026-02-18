@@ -8,21 +8,23 @@
 
   <!-- フォロワー一覧 -->
 
-<h2 class="follow-title">フォロワーリスト</h2>
+<div class="follow-header">
+  <h2 class="follow-title">フォロワーリスト</h2>
 
-  <!-- フォロワーアイコン一覧（上部） -->
-<div class="follow-icon-area">
-  @foreach($posts->unique('user_id') as $post)
-    <!-- ユーザーアイコン（プロフィールリンク） -->
-    <a href="{{ url('/profile/' . $post->user->id) }}">
-      <img
-        src="{{ $post->user->icon_path
-          ? asset('storage/' . $post->user->icon_path)
-          : asset('images/icon1.png') }}"
-        class="follow-icon"
-      >
-    </a>
-  @endforeach
+  <!-- フォロワーアイコン一覧（横並び） -->
+  <div class="follow-icon-area">
+    @foreach($followers as $follower)
+      <!-- ユーザーアイコン（プロフィールリンク） -->
+      <a href="{{ url('/profile/' . $follower->id) }}">
+        <img
+          src="{{ $follower->icon_image
+            ? asset('storage/' . $follower->icon_image)
+            : asset('images/icon1.png') }}"
+          class="follow-icon"
+        >
+      </a>
+    @endforeach
+  </div>
 </div>
 
   <!-- 投稿一覧 -->
@@ -34,8 +36,8 @@
         <div class="post-user-icon">
           <a href="{{ url('/profile/' . $post->user->id) }}">
             <img
-              src="{{ $post->user->icon_path
-                ? asset('storage/' . $post->user->icon_path)
+              src="{{ $post->user->icon_image
+                ? asset('storage/' . $post->user->icon_image)
                 : asset('images/icon1.png') }}"
             >
           </a>

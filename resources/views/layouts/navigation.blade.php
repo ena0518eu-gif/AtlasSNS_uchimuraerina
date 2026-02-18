@@ -33,7 +33,7 @@
 
         <!-- ユーザーアイコン -->
         <!-- <img
-          src="{{ Auth::user()->icon_path ? asset(Auth::user()->icon_path) : asset('images/icon1.png') }}"
+          src="{{ Auth::user()->icon_image ? asset(Auth::user()->icon_image) : asset('images/icon1.png') }}"
           id="header-user-icon" -->
         >
 

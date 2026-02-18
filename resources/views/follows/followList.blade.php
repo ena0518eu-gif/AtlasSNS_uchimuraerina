@@ -8,20 +8,20 @@
 
   <!-- フォロー一覧 -->
 
-<h2 class="follow-title">フォローリスト</h2>
-  <!-- フォローアイコン一覧（上部） -->
+<div class="follow-header">
+  <h2 class="follow-title">フォローリスト</h2>
+
+  <!-- フォローアイコン一覧（横並び） -->
 <div class="follow-icon-area">
-  @foreach($posts->unique('user_id') as $post)
-    <!-- ユーザーアイコン（プロフィールリンク） -->
-    <a href="{{ url('/profile/' . $post->user->id) }}">
+  @foreach($follows as $follow)
+    <a href="{{ route('profile.show', $follow->id) }}">
       <img
-        src="{{ $post->user->icon_path
-          ? asset('storage/' . $post->user->icon_path)
-          : asset('images/icon1.png') }}"
+        src="{{ $follow->icon_image ? asset('storage/' . $follow->icon_image) : asset('images/icon1.png') }}"
         class="follow-icon"
       >
     </a>
   @endforeach
+</div>
 </div>
 
   <!-- 投稿一覧 -->
@@ -33,8 +33,8 @@
         <div class="post-user-icon">
           <a href="{{ url('/profile/' . $post->user->id) }}">
             <img
-              src="{{ $post->user->icon_path
-                ? asset('storage/' . $post->user->icon_path)
+              src="{{ $post->user->icon_image
+                ? asset('storage/' . $post->user->icon_image)
                 : asset('images/icon1.png') }}"
             >
           </a>

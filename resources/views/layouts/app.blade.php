@@ -31,18 +31,22 @@
 
       @if(Auth::check())
 
-        <!-- ユーザー名 -->
-        <span id="user-name">
-          {{ Auth::user()->username }} さん
-        </span>
+<!-- ユーザー名 -->
+<span class="user-name-text">
+  {{ Auth::user()->username }}
+</span>
+
+<span class="user-honor">
+  さん
+</span>
 
         <!-- 矢印 -->
         <div id="accordion-btn"></div>
 
         <!-- ヘッダーアイコン -->
         <div class="header-icon">
-          <img src="{{ Auth::user()->icon_path
-            ? asset('storage/' . Auth::user()->icon_path)
+          <img src="{{ Auth::user()->icon_image
+            ? asset('storage/' . Auth::user()->icon_image)
             : asset('images/icon1.png') }}">
         </div>
 

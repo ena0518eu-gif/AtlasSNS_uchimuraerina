@@ -18,4 +18,15 @@ class PostRequest extends FormRequest
             'post' => ['required', 'string', 'min:1', 'max:150'],
         ];
     }
+
+    // エラーメッセージ（日本語）
+    public function messages()
+    {
+        return [
+            'post.required' => 'つぶやきを入力してください。',
+            'post.string'   => '文字を入力してください。',
+            'post.min'      => '1文字以上入力してください。',
+            'post.max'      => '150文字以内で入力してください。',
+        ];
+    }
 }

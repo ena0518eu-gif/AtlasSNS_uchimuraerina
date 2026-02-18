@@ -15,12 +15,11 @@ class FollowsController extends Controller
         // ログインユーザーの情報取得
         $user = Auth::user();
 
-        // ユーザーがフォローしているユーザーの投稿を取得
-        // with('posts') で投稿も同時取得
-        // ↓↓↓ 投稿単位で取得するように修正 ↓↓↓
-
         // フォローしているユーザーIDを取得
         $followIds = $user->follows()->pluck('users.id');
+
+        // フォローしているユーザー一覧（投稿していない人も含む）
+        $follows = User::whereIn('id', $followIds)->get();
 
         // フォローしているユーザーの投稿を新しい順で取得
         $posts = Post::with('user')
@@ -29,7 +28,7 @@ class FollowsController extends Controller
             ->get();
 
         // ビューに渡す
-        return view('follows.followList', compact('posts'));
+        return view('follows.followList', compact('posts', 'follows'));
     }
 
     // フォロワー一覧表示
@@ -38,10 +37,11 @@ class FollowsController extends Controller
         // ログインユーザーの情報取得
         $user = Auth::user();
 
-        // ユーザーをフォローしているユーザー＋投稿を取得
-
         // フォロワーのIDを取得
         $followerIds = $user->followers()->pluck('users.id');
+
+        // フォロワーユーザー一覧（投稿していない人も含む）
+        $followers = User::whereIn('id', $followerIds)->get();
 
         // フォロワーの投稿を新しい順で取得
         $posts = Post::with('user')
@@ -50,7 +50,7 @@ class FollowsController extends Controller
             ->get();
 
         // ビューに渡す
-        return view('follows.followerList', compact('posts'));
+        return view('follows.followerList', compact('posts', 'followers'));
     }
 
     // フォローする処理

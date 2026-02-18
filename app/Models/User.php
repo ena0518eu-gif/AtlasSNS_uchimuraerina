@@ -22,7 +22,7 @@ protected $fillable = [
     'email',
     'password',
     'bio',
-    'icon_path',
+    'icon_image',
 ];
 
     /**

@@ -54,8 +54,8 @@
         {{-- ユーザー情報 --}}
         <div class="user-info">
           <img
-            src="{{ $user->icon_path
-              ? asset('storage/' . $user->icon_path)
+            src="{{ $user->icon_image
+              ? asset('storage/' . $user->icon_image)
               : asset('images/icon1.png') }}"
           >
           <span>{{ $user->username }}</span>

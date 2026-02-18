@@ -1,25 +1,26 @@
   /* タイトル */
   .follow-title {
     font-size: 20px;
-    font-weight: bold;
-    margin: 20px 0;
+    /* font-weight: bold; */
+    margin: 20px 80px;
+  }
+
+  /* タイトル＋アイコン横並び */
+  .follow-header {
+    display: flex;
+    align-items: center;
+    gap: 30px;
+
+    margin-top: 20px;
+    border-bottom: 3px solid #ccc;
+    padding: 0 80px 15px;
+    /* ← 横余白はpaddingに変更 */
   }
 
   .follow-icon-area {
     display: flex;
-    flex-wrap: nowrap;
     gap: 12px;
-
-    padding: 15px 0 25px;
-    padding-left: 140px;
-
-    border-bottom: 3px solid #ccc;
-    margin-bottom: 20px;
-
-    max-width: 100%;
-    box-sizing: border-box;
-
-    overflow-x: auto;
+    flex-wrap: wrap;
   }
 
   .follow-icon {
@@ -29,7 +30,6 @@
     object-fit: cover;
     border: 1px solid #ccc;
     transition: transform 0.2s;
-    flex-shrink: 0;
   }
 
   .follow-icon:hover {
@@ -49,11 +49,9 @@
     padding: 15px 0;
     border-bottom: 1px solid #e0e0e0;
 
-    /* 横はみ出し防止 */
     max-width: 100%;
     box-sizing: border-box;
 
-    /* 投稿日時 */
     position: relative;
   }
 
@@ -81,7 +79,7 @@
   }
 
   .post-username {
-    font-weight: bold;
+    /* font-weight: bold; */
     margin-bottom: 5px;
   }
 

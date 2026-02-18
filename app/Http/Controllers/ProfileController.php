@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Requests\ProfileUpdateRequest;
 
 class ProfileController extends Controller
 {
@@ -16,47 +16,12 @@ class ProfileController extends Controller
     // =========================
     // プロフィール更新処理
     // =========================
-    public function update(Request $request)
+    public function update(ProfileUpdateRequest $request)
     {
         // =========================
         // バリデーション
         // =========================
-        $request->validate([
-
-            // -------------------------
-            // ユーザー名
-            // -------------------------
-            'username' => 'required|min:2|max:12',
-
-            // -------------------------
-            // メールアドレス
-            // -------------------------
-            'email' => 'required|email|min:5|max:40|unique:users,email,' . Auth::id(),
-
-            // -------------------------
-            // パスワード
-            // 仕様通り：必須 / 英数字 / 8〜20
-            // -------------------------
-            'password' => [
-                'required',
-                'string',
-                'alpha_num',       // ← 英数字のみ
-                'min:8',
-                'max:20',
-                'confirmed',       // password_confirmationと一致
-            ],
-
-            // -------------------------
-            // 自己紹介
-            // -------------------------
-            'bio' => 'nullable|max:150',
-
-            // -------------------------
-            // アイコン画像
-            // -------------------------
-            'icon' => 'nullable|image|mimes:jpg,jpeg,png,bmp,gif,svg',
-
-        ]);
+        // ※ ProfileUpdateRequest にて自動実行
 
         $user = Auth::user();
 
@@ -70,18 +35,18 @@ class ProfileController extends Controller
         // =========================
         // パスワード更新
         // =========================
-        $user->password = bcrypt($request->password);
+        $user->password = bcrypt($request->new_password);
 
         // =========================
         // アイコン画像
         // =========================
-        if ($request->hasFile('icon')) {
+        if ($request->hasFile('icon_image')) {
 
             // public/storage/icons に保存
-            $path = $request->file('icon')->store('icons', 'public');
+            $path = $request->file('icon_image')->store('icons', 'public');
 
             // DBには相対パスのみ保存
-            $user->icon_path = $path;
+            $user->icon_image = $path;
         }
 
         // =========================

@@ -18,9 +18,13 @@
       {{ session('username') }}さん
     </p>
 
+    <!-- ようこそメッセージ -->
+    <p class="added-welcome">
+      ようこそ！AtlasSNSへ
+    </p>
+
     <!-- メッセージ -->
     <p class="added-message">
-      ようこそ！AtlasSNSへ<br>
       ユーザー登録が完了いたしました。<br>
       早速ログインをしてみましょう！
     </p>

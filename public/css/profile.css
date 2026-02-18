@@ -49,8 +49,8 @@
 }
 
 .profile-icon-area img {
-  width: 60px;
-  height: 60px;
+  width: 70px;
+  height: 70px;
   border-radius: 50%;
   object-fit: cover;
 }
@@ -147,4 +147,11 @@
 /* hover */
 .update-btn:hover {
   background: #d84333;
+}
+
+/* エラーメッセージ */
+.error-message {
+  color: #e74c3c;
+  font-size: 13px;
+  margin-top: 6px;
 }

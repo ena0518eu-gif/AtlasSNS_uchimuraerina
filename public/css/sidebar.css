@@ -8,6 +8,13 @@
   padding: 40px 25px;
 }
 
+/* 追加：○○さんの  */
+.user-sidebar-title {
+  font-size: 14px;
+  color: #444;
+  margin-bottom: 20px;
+}
+
 /* 各ブロック */
 .follow-block {
   margin-bottom: 35px;

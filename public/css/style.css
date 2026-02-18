@@ -56,12 +56,23 @@ img {
     position: relative;
 }
 
+/*  追加：ユーザー名余白調整 */
+
 /* ユーザー名 */
-#user-name {
+.user-name-text {
     color: #fff;
     font-size: 14px;
-    margin-right: 12px;
+    margin-right: 30px;
+    /* ← ◎◎ と さん の間 */
     white-space: nowrap;
+}
+
+/* さん */
+.user-honor {
+    color: #fff;
+    font-size: 14px;
+    margin-right: 30px;
+    /* ← さん と ▼ の間 */
 }
 
 /* 矢印（CSSのみ） */
@@ -101,14 +112,10 @@ img {
     display: none;
     position: fixed;
     top: 80px;
-    /* ヘッダー直下 */
     right: 0;
-    /* 画面右端に合わせる */
     width: 300px;
-    /* サイドバーと同じ幅 */
     background: #fff;
     border: 1px solid #000;
-    /* 黒枠線に修正 */
     list-style: none;
     padding: 0;
     margin: 0;

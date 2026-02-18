@@ -4,8 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use App\Models\User;
+use App\Http\Requests\RegisterRequest;
 use Illuminate\Http\RedirectResponse;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\View\View;
@@ -23,28 +23,26 @@ class RegisteredUserController extends Controller
     /**
      * Handle an incoming registration request.
      */
-    public function store(Request $request): RedirectResponse
+    public function store(RegisterRequest $request): RedirectResponse
     {
         // =========================
         // バリデーション
-        // =========================
-        $request->validate([
-            'username' => 'required|min:2|max:12',
-            'email'    => 'required|email|unique:users,email',
-            'password' => 'required|min:8|confirmed',
-        ]);
+        // // =========================
+        // $request->validate([
+        //     'username' => 'required|min:2|max:12',
+        //     'email'    => 'required|email|unique:users,email',
+        //     'password' => 'required|min:8|confirmed',
+        // ]);
+
 
         // =========================
         // ユーザー作成
         // =========================
-        $user = User::create([
-            'username'  => $request->username,
-            'email'     => $request->email,
-            'password'  => Hash::make($request->password),
-
-            // 初期アイコンは未設定（デフォルト画像を表示）
-            'icon_path' => null,
-        ]);
+$user = User::create([
+    'username'  => $request->username,
+    'email'     => $request->email,
+    'password'  => Hash::make($request->password),
+]);
 
         // =========================
         // 自動ログイン解除（仕様）
