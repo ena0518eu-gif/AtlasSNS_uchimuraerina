@@ -17,9 +17,14 @@
 
       <!-- ログインユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ Auth::user()->icon_image
-          ? asset('storage/' . Auth::user()->icon_image)
-          : asset('images/icon1.png') }}">
+        <img src="
+        {{
+          Auth::user()->icon_image
+            ? (str_contains(Auth::user()->icon_image, 'icons/')
+                ? asset('storage/' . Auth::user()->icon_image)
+                : asset('images/' . Auth::user()->icon_image))
+            : asset('images/icon1.png')
+        }}">
       </div>
 
       <!-- 投稿フォーム -->
@@ -63,9 +68,14 @@
 
       <!-- 投稿ユーザーアイコン -->
       <div class="post-user-icon">
-        <img src="{{ $post->user->icon_image
-          ? asset('storage/' . $post->user->icon_image)
-          : asset('images/icon1.png') }}">
+        <img src="
+        {{
+          $post->user->icon_image
+            ? (str_contains($post->user->icon_image, 'icons/')
+                ? asset('storage/' . $post->user->icon_image)
+                : asset('images/' . $post->user->icon_image))
+            : asset('images/icon1.png')
+        }}">
       </div>
 
       <!-- 中央：本文エリア -->

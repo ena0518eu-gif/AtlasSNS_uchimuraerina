@@ -1,106 +1,107 @@
-  /* タイトル */
-  .follow-title {
-    font-size: 20px;
-    /* font-weight: bold; */
-    margin: 20px 80px;
-  }
+@charset "utf-8";
 
-  /* タイトル＋アイコン横並び */
-  .follow-header {
-    display: flex;
-    align-items: center;
-    gap: 30px;
+/* タイトル */
+.follow-title {
+  font-size: 20px;
+  /* font-weight: bold; */
+  margin: 20px 40px;
+}
 
-    margin-top: 20px;
-    border-bottom: 3px solid #ccc;
-    padding: 0 80px 15px;
-    /* ← 横余白はpaddingに変更 */
-  }
+/* タイトル＋アイコン横並び */
+.follow-header {
+  display: flex;
+  align-items: center;
+  gap: 30px;
 
-  .follow-icon-area {
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
-  }
+  margin-top: 20px;
+  border-bottom: 3px solid #ccc;
+  padding: 0 0 15px;
+}
 
-  .follow-icon {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 1px solid #ccc;
-    transition: transform 0.2s;
-  }
+.follow-icon-area {
+  display: flex;
+  gap: 12px;
+  flex-wrap: wrap;
+}
 
-  .follow-icon:hover {
-    transform: scale(1.05);
-  }
+.follow-icon {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 1px solid #ccc;
+  transition: transform 0.2s;
+}
 
-  /* 投稿一覧ラッパー */
-  .post-list-wrapper {
-    width: 100%;
-    box-sizing: border-box;
-  }
+.follow-icon:hover {
+  transform: scale(1.05);
+}
 
-  /* 投稿1件 */
-  .post-item {
-    display: flex;
-    align-items: flex-start;
-    padding: 15px 0;
-    border-bottom: 1px solid #e0e0e0;
+/* 投稿一覧ラッパー */
+.post-list-wrapper {
+  width: 100%;
+  box-sizing: border-box;
+}
 
-    max-width: 100%;
-    box-sizing: border-box;
+/* 投稿1件 */
+.post-item {
+  display: flex;
+  align-items: flex-start;
+  padding: 15px 0;
+  border-bottom: 1px solid #e0e0e0;
 
-    position: relative;
-  }
+  max-width: 100%;
+  box-sizing: border-box;
 
-  /* ユーザーアイコン */
-  .post-user-icon {
-    margin-right: 15px;
-    flex-shrink: 0;
+  position: relative;
+}
 
-    margin-left: 80px;
-  }
+/* ユーザーアイコン */
+.post-user-icon {
+  margin-right: 15px;
+  flex-shrink: 0;
 
-  .post-user-icon img {
-    width: 60px;
-    height: 60px;
-    border-radius: 50%;
-    object-fit: cover;
-  }
+  margin-left: 100px;
+}
 
-  /* 投稿内容 */
-  .post-content {
-    flex: 1;
-    min-width: 0;
+.post-user-icon img {
+  width: 60px;
+  height: 60px;
+  border-radius: 50%;
+  object-fit: cover;
+}
 
-    padding-right: 80px;
-  }
+/* 投稿内容 */
+.post-content {
+  flex: 1;
+  min-width: 0;
 
-  .post-username {
-    /* font-weight: bold; */
-    margin-bottom: 5px;
-  }
+  padding-right: 0;
+}
 
-  .post-text {
-    color: #333;
-    line-height: 1.5;
+.post-username {
+  /* font-weight: bold; */
+  margin-bottom: 5px;
+}
 
-    word-break: break-word;
-  }
+.post-text {
+  color: #333;
+  line-height: 1.5;
 
-  /* 右側：投稿日*/
-  .post-right {
-    position: absolute;
-    top: 15px;
+  word-break: break-word;
+}
 
-    right: 20px;
+/* 右側：投稿日*/
+.post-right {
+  position: absolute;
+  top: 15px;
 
-    white-space: nowrap;
-  }
+  right: 20px;
 
-  .post-date {
-    font-size: 12px;
-    color: #888;
-  }
+  white-space: nowrap;
+}
+
+.post-date {
+  font-size: 12px;
+  color: #888;
+}

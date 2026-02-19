@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
-@section('content')
 @section('css')
 <link rel="stylesheet" href="{{ asset('css/sidebar.css') }}">
 <link rel="stylesheet" href="{{ asset('css/follow-list.css') }}">
 @endsection
+
+@section('content')
 
   <!-- フォロー一覧 -->
 
@@ -16,7 +17,14 @@
   @foreach($follows as $follow)
     <a href="{{ route('profile.show', $follow->id) }}">
       <img
-        src="{{ $follow->icon_image ? asset('storage/' . $follow->icon_image) : asset('images/icon1.png') }}"
+        src="
+        {{
+          $follow->icon_image
+            ? (str_contains($follow->icon_image, 'icons/')
+                ? asset('storage/' . $follow->icon_image)
+                : asset('images/' . $follow->icon_image))
+            : asset('images/icon1.png')
+        }}"
         class="follow-icon"
       >
     </a>
@@ -33,9 +41,14 @@
         <div class="post-user-icon">
           <a href="{{ url('/profile/' . $post->user->id) }}">
             <img
-              src="{{ $post->user->icon_image
-                ? asset('storage/' . $post->user->icon_image)
-                : asset('images/icon1.png') }}"
+              src="
+              {{
+                $post->user->icon_image
+                  ? (str_contains($post->user->icon_image, 'icons/')
+                      ? asset('storage/' . $post->user->icon_image)
+                      : asset('images/' . $post->user->icon_image))
+                  : asset('images/icon1.png')
+              }}"
             >
           </a>
         </div>

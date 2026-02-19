@@ -26,7 +26,7 @@
           <img src="{{ asset('images/search.png') }}" alt="検索">
         </button>
 
-        {{-- 🔽 検索ワード表示（検索ボタン右横） --}}
+        {{-- 検索ワード表示（検索ボタン右横） --}}
         @if(request('keyword'))
           <span class="search-word">
             検索ワード：{{ request('keyword') }}
@@ -53,11 +53,11 @@
 
         {{-- ユーザー情報 --}}
         <div class="user-info">
-          <img
-            src="{{ $user->icon_image
-              ? asset('storage/' . $user->icon_image)
-              : asset('images/icon1.png') }}"
-          >
+<img
+  src="{{ $user->icon_image
+    ? asset('images/' . $user->icon_image)
+    : asset('images/icon1.png') }}"
+>
           <span>{{ $user->username }}</span>
         </div>
 

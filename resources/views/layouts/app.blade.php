@@ -45,9 +45,14 @@
 
         <!-- ヘッダーアイコン -->
         <div class="header-icon">
-          <img src="{{ Auth::user()->icon_image
-            ? asset('storage/' . Auth::user()->icon_image)
-            : asset('images/icon1.png') }}">
+          <img src="
+          {{
+            Auth::user()->icon_image
+              ? (str_contains(Auth::user()->icon_image, 'icons/')
+                  ? asset('storage/' . Auth::user()->icon_image)
+                  : asset('images/' . Auth::user()->icon_image))
+              : asset('images/icon1.png')
+          }}">
         </div>
 
           <!-- ドロップダウンメニュー -->

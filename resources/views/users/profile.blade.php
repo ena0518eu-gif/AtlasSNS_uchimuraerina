@@ -13,7 +13,7 @@
 
     <!-- 左：ユーザーアイコン -->
   <div class="profile-icon">
-    <img src="{{ $user->icon_image ? asset('storage/' . $user->icon_image) : asset('images/icon1.png') }}">
+    <img src="{{ $user->icon_image ? asset('images/' . $user->icon_image) : asset('images/icon1.png') }}">
   </div>
 
     <!-- 中央：ユーザー情報 -->
@@ -71,7 +71,7 @@
 
       <!-- 投稿者アイコン -->
       <div class="post-user-icon">
-        <img src="{{ $user->icon_image ? asset('storage/' . $user->icon_image) : asset('images/icon1.png') }}">
+        <img src="{{ $user->icon_image ? asset('images/' . $user->icon_image) : asset('images/icon1.png') }}">
       </div>
 
       <!-- 投稿内容 -->

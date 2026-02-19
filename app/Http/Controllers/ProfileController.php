@@ -42,11 +42,15 @@ class ProfileController extends Controller
         // =========================
         if ($request->hasFile('icon_image')) {
 
-            // public/storage/icons に保存
-            $path = $request->file('icon_image')->store('icons', 'public');
+            // public/images に保存
+            $file = $request->file('icon_image');
 
-            // DBには相対パスのみ保存
-            $user->icon_image = $path;
+            $fileName = time() . '_' . $file->getClientOriginalName();
+
+            $file->move(public_path('images'), $fileName);
+
+            // DBにはファイル名のみ保存
+            $user->icon_image = $fileName;
         }
 
         // =========================

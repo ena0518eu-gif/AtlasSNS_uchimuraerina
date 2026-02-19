@@ -46,6 +46,7 @@
   flex-shrink: 0;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
 
 .profile-icon-area img {
@@ -53,6 +54,7 @@
   height: 70px;
   border-radius: 50%;
   object-fit: cover;
+  display: block;
 }
 
 /* 右：プロフィール編集フォーム */

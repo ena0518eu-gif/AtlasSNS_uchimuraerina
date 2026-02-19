@@ -3,9 +3,13 @@
 /* サイドバー全体 */
 .side-bar {
   width: 300px;
+  min-width: 300px;
+  /* ← 追加（flex潰れ防止） */
   border-left: 3px solid #cfcfcf;
   background: #ffffff;
   padding: 40px 25px;
+  box-sizing: border-box;
+  /* ← 追加（paddingで幅崩れ防止） */
 }
 
 /* 追加：○○さんの  */
@@ -37,7 +41,7 @@
 
 /* 区切り線 */
 .under-line {
-  height: 1px;
+  height: 3px;
   background: #e5e5e5;
   margin: 35px -25px;
 }

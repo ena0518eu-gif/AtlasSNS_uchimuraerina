@@ -4,11 +4,17 @@
   padding: 40px 0 0;
 }
 
+
 /* 検索フォーム（左寄せ） */
 .search-form {
-  width: 900px;
-  margin-left: 40px;
-  padding-bottom: 25px;
+  padding-left: 40px;
+  width: 100%;
+
+  max-width: 900px;
+
+  margin: 0;
+
+  padding-bottom: 30px;
 }
 
 .search-form form {
@@ -16,6 +22,7 @@
   align-items: center;
   gap: 18px;
   width: 100%;
+  flex-wrap: wrap;
 }
 
 /* ユーザー名入力欄 */
@@ -62,7 +69,10 @@
 
 /* 検索結果（中央寄せ） */
 .search-result {
-  width: 600px;
+  width: 100%;
+
+  max-width: 600px;
+
   margin: 40px auto 0;
 }
 
@@ -81,12 +91,24 @@
   gap: 25px;
 }
 
+/* ★ アイコン完全固定 */
 .user-info img {
   width: 60px;
   height: 60px;
+  min-width: 60px;
+
+  flex-shrink: 0;
+
   border-radius: 50%;
+  object-fit: cover;
+
+  display: block;
+  max-width: none;
+
+  vertical-align: middle;
 }
 
+/* ユーザー名 */
 .user-info span {
   font-size: 16px;
   max-width: 180px;
