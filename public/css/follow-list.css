@@ -5,6 +5,8 @@
   font-size: 20px;
   /* font-weight: bold; */
   margin: 20px 40px;
+  white-space: nowrap;
+  /* ←見出しを改行させない */
 }
 
 /* タイトル＋アイコン横並び */
@@ -18,12 +20,14 @@
   padding: 0 0 15px;
 }
 
+/* アイコン10個で改行させる */
 .follow-icon-area {
-  display: flex;
+  display: grid;
+  grid-template-columns: repeat(10, 60px);
   gap: 12px;
-  flex-wrap: wrap;
 }
 
+/* アイコン */
 .follow-icon {
   width: 60px;
   height: 60px;
@@ -89,6 +93,8 @@
   line-height: 1.5;
 
   word-break: break-word;
+  white-space: pre-wrap;
+  /* 追加：改行を反映させる */
 }
 
 /* 右側：投稿日*/

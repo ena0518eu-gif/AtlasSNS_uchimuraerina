@@ -16,10 +16,13 @@ $(function () {
     let id = $(this).data('id');
 
     // textareaに投稿内容をセット
-    $('#edit-post').val(post);
+    $('#edit-post').val(post.trim());
 
     // action設定
     $('#edit-form').attr('action', '/posts/' + id);
+
+    // エラー文リセット
+    $('.edit-error').text('');
 
     // モーダル表示
     $('#edit-modal').addClass('active');
@@ -42,11 +45,36 @@ $(function () {
   });
 
 
+  //  更新バリデーション
+
+  $('#edit-form').on('submit', function (e) {
+
+    let text = $('#edit-post').val().trim();
+    let length = text.length;
+
+    if (length === 0) {
+      e.preventDefault();
+      $('.edit-error').text('投稿内容を入力してください');
+      return;
+    }
+
+    if (length > 150) {
+      e.preventDefault();
+      $('.edit-error').text('150文字以内で入力してください');
+      return;
+    }
+
+  });
+
+
   //  モーダル閉じる
 
   $('.js-modal-close, .modal-overlay').on('click', function (e) {
 
-    if ($(e.target).hasClass('modal-overlay') || $(e.target).hasClass('js-modal-close')) {
+    if (
+      $(e.target).hasClass('modal-overlay') ||
+      $(e.target).hasClass('js-modal-close')
+    ) {
 
       // モーダル非表示
       $('.modal-overlay').removeClass('active');

@@ -35,8 +35,9 @@
 
           <textarea
             name="post"
+            rows="1"
             maxlength="150"
-            placeholder="投稿内容を入力してください。"
+            placeholder="投稿内容を入力してください"
           >{{ old('post') }}</textarea>
 
           {{-- エラーメッセージ --}}
@@ -96,18 +97,18 @@
         <!-- 編集・削除ボタン -->
         <div class="post-action">
 
-          <!-- 編集ボタン -->
+          <!-- 編集ボタン（JS用） -->
           <button
             type="button"
             class="edit-btn js-edit-open"
             data-id="{{ $post->id }}"
-            data-post="{{ e($post->post) }}"
+            data-post="{{ e(str_replace(["\r\n", "\r", "\n"], '', $post->post)) }}"
           >
             <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
             <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
           </button>
 
-          <!-- 削除ボタン -->
+          <!-- 削除ボタン（JS用） -->
           <button
             type="button"
             class="delete-btn js-delete-open"
@@ -131,49 +132,59 @@
 
 </div>
 
+{{-- 編集モーダル --}}
+<div id="edit-modal" class="modal-overlay">
 
-  <!-- 編集モーダル -->
-<div class="modal-overlay" id="edit-modal">
-  <div class="modal-box">
-    <form method="POST" id="edit-form">
+  <div class="modal-content">
+
+    {{-- ★ 追加：JS閉じる判定用 --}}
+    <div class="js-modal-close" style="display:none;"></div>
+
+    <form id="edit-form" method="POST">
       @csrf
       @method('PUT')
 
       <textarea id="edit-post" name="post" maxlength="150"></textarea>
 
-      <div class="modal-btn-area">
+      {{-- 編集エラー表示 --}}
+      <p class="edit-error"></p>
 
-        <!--  hover切替 -->
-        <button type="submit" class="edit-btn modal-edit-btn">
-          <img src="{{ asset('images/edit.png') }}" class="normal">
-          <img src="{{ asset('images/edit_h.png') }}" class="hover">
+      <!-- ▼ ここだけ変更（テキストボタン削除 → アイコン送信に変更） -->
+      <div class="modal-icon-submit">
+        <button type="submit" class="modal-submit-btn">
+          <img src="{{ asset('images/edit.png') }}">
         </button>
-
       </div>
+
     </form>
+
   </div>
+
 </div>
 
+{{-- 削除モーダル --}}
+<div id="delete-modal" class="modal-overlay">
 
-  <!-- 削除モーダル -->
-<div class="modal-overlay" id="delete-modal">
-  <div class="modal-box">
+  <div class="modal-content">
 
-    <p class="delete-text">
-      この投稿を削除します。よろしいでしょうか？
-    </p>
 
-    <form method="POST" id="delete-form">
+    <div class="js-modal-close" style="display:none;"></div>
+
+    <form id="delete-form" method="POST">
       @csrf
       @method('DELETE')
 
-      <div class="modal-btn-area">
-        <button type="submit" class="modal-ok">OK</button>
-        <button type="button" class="modal-cancel js-modal-close">キャンセル</button>
+      <p>この投稿を削除しますか？</p>
+
+      <div class="modal-buttons">
+        <button type="submit">削除</button>
+        <button type="button" class="js-modal-close">キャンセル</button>
       </div>
+
     </form>
 
   </div>
+
 </div>
 
 @endsection

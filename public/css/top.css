@@ -14,7 +14,6 @@
   border-bottom: 4px solid #cfcfcf;
   background: #fafafa;
   box-sizing: border-box;
-  /* ← 追加 */
 }
 
 .post-input-area {
@@ -89,10 +88,9 @@
   gap: 20px;
   padding: 30px 40px;
   padding-left: 80px;
-  /* ← 追加：marginの代わり */
   border-bottom: 1px solid #e0e0e0;
   box-sizing: border-box;
-  /* ← 追加 */
+  position: relative;
 }
 
 /* 本文 */
@@ -100,11 +98,9 @@
   flex: 1;
   position: relative;
   min-width: 0;
-  /* ← 追加：テキストはみ出し防止 */
 }
 
 .post-username {
-  /* font-weight: bold; */
   margin-bottom: 6px;
   font-size: 14px;
 }
@@ -122,20 +118,20 @@
   width: 160px;
   text-align: right;
   flex-shrink: 0;
-  /* ← 追加 */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+  z-index: 5;
+  /* ← 追加：クリック不能対策 */
 }
 
+/* 日付 */
 .post-date {
   font-size: 11px;
   color: #9a9a9a;
-}
-
-/* 編集削除エリア */
-.post-action {
-  margin-top: 10px;
-  display: flex;
-  justify-content: flex-end;
-  gap: 12px;
+  margin-bottom: 70px;
+  /* ← ボタンとの間隔を広げる */
 }
 
 /* 編集削除ボタン本体 */
@@ -148,9 +144,10 @@
   border: none;
   padding: 0;
   cursor: pointer;
+  z-index: 10;
 }
 
-/* アイコン画像（重ねる） */
+/* アイコン画像 */
 .edit-btn img,
 .delete-btn img {
   position: absolute;
@@ -188,83 +185,130 @@
   transform: scale(1.05);
 }
 
-/* モーダル共通 */
-.modal-overlay {
-  display: none;
-  /* ←最初は非表示 */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0, 0, 0, 0.4);
-  justify-content: center;
-  align-items: center;
-  z-index: 9999;
-}
-
-/* 表示時 */
-.modal-overlay.active {
-  display: flex;
-}
-
-/* モーダル本体 */
-.modal-box {
-  width: 450px;
-  background: #fff;
-  padding: 30px;
-  border-radius: 6px;
-  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-  text-align: center;
-}
-
-/* textarea */
-#edit-post {
-  width: 100%;
-  height: 100px;
-  border: 2px solid #cfcfcf;
-  padding: 10px;
-  resize: none;
-  margin-bottom: 20px;
-}
-
-/* ボタンエリア */
-.modal-btn-area {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-}
-
-/* OKボタン */
-.modal-ok {
-  width: 100px;
-  padding: 8px 0;
-  background: #1768c4;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* キャンセル */
-.modal-cancel {
-  width: 100px;
-  padding: 8px 0;
-  background: #eee;
-  border: 1px solid #aaa;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-/* 削除メッセージ */
-.delete-text {
-  font-size: 14px;
-  margin-bottom: 35px;
-}
-
 /* エラーメッセージ */
 .error-message {
   color: red;
   font-size: 13px;
   margin-top: 5px;
+}
+
+.edit-error {
+  color: #ff4d4d;
+  font-size: 13px;
+  margin-top: 8px;
+  min-height: 18px;
+}
+
+/* モーダル */
+
+/* モーダル背景 */
+.modal-overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.45);
+  display: none;
+  justify-content: center;
+  align-items: center;
+  z-index: 999;
+}
+
+.modal-overlay.active {
+  display: flex;
+}
+
+/* モーダル中身 */
+.modal-overlay .modal-content {
+  background: #fff;
+  padding: 40px;
+  border-radius: 14px;
+  width: 520px;
+  max-width: 90%;
+  box-shadow: 0 15px 40px rgba(0, 0, 0, 0.18);
+  border: 1px solid #e5e5e5;
+}
+
+/* モーダル内 textarea のみ */
+.modal-overlay .modal-content textarea {
+  width: 100%;
+  height: 170px;
+  resize: none;
+  padding: 16px;
+  box-sizing: border-box;
+  border: 1px solid #dcdcdc;
+  border-radius: 8px;
+  font-size: 14px;
+  line-height: 1.6;
+}
+
+/* ボタンエリア */
+.modal-overlay .modal-buttons {
+  margin-top: 25px;
+  text-align: right;
+}
+
+/* モーダル内ボタンのみ */
+.modal-overlay .modal-buttons button {
+  padding: 10px 26px;
+  margin-left: 12px;
+  border-radius: 8px;
+  font-size: 14px;
+  border: none;
+  cursor: pointer;
+}
+
+/* 更新 / OK */
+.modal-overlay .modal-buttons button[type="submit"] {
+  background: #5f79b7;
+  color: #fff;
+}
+
+/* キャンセル */
+.modal-overlay .modal-buttons button[type="button"] {
+  background: #fff;
+  border: 1px solid #bbb;
+  color: #333;
+}
+
+.modal-overlay .modal-buttons button:hover {
+  opacity: 0.9;
+}
+
+/*  編集モーダル アイコン送信 */
+
+.modal-icon-submit {
+  margin-top: 25px;
+  text-align: center;
+}
+
+.modal-submit-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+
+.modal-submit-btn img {
+  width: 45px;
+  height: 45px;
+  opacity: 0.9;
+  transition: 0.2s ease;
+}
+
+.modal-submit-btn:hover img {
+  opacity: 1;
+  transform: scale(1.1);
+}
+
+/*  1行用に修正 */
+.post-form-inner textarea {
+  flex: 1;
+  width: 100%;
+  height: 40px;
+  border: none;
+  padding: 0;
+  resize: none;
+  font-size: 14px;
+  background: transparent;
+  outline: none;
+  box-sizing: border-box;
 }
