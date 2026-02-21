@@ -21,10 +21,8 @@
           src="
           {{
             $follower->icon_image
-              ? (str_contains($follower->icon_image, 'icons/')
-                  ? asset('storage/' . $follower->icon_image)
-                  : asset('images/' . $follower->icon_image))
-              : asset('images/icon1.png')
+              ? asset('images/icons/' . $follower->icon_image)  {{-- icons フォルダに統一 --}}
+              : asset('images/icons/icon1.png')                {{-- デフォルトも icons --}}
           }}"
           class="follow-icon"
         >
@@ -45,10 +43,8 @@
               src="
               {{
                 $post->user->icon_image
-                  ? (str_contains($post->user->icon_image, 'icons/')
-                      ? asset('storage/' . $post->user->icon_image)
-                      : asset('images/' . $post->user->icon_image))
-                  : asset('images/icon1.png')
+                  ? asset('images/icons/' . $post->user->icon_image)  {{-- icons フォルダに統一 --}}
+                  : asset('images/icons/icon1.png')                    {{-- デフォルトも icons --}}
               }}"
             >
           </a>

@@ -48,10 +48,8 @@
           <img src="
           {{
             Auth::user()->icon_image
-              ? (str_contains(Auth::user()->icon_image, 'icons/')
-                  ? asset('storage/' . Auth::user()->icon_image)
-                  : asset('images/' . Auth::user()->icon_image))
-              : asset('images/icon1.png')
+              ? asset('images/icons/' . Auth::user()->icon_image) {{-- icons フォルダに統一 --}}
+              : asset('images/icons/icon1.png')                   {{-- デフォルトも icons --}}
           }}">
         </div>
 

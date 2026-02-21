@@ -53,11 +53,12 @@
 
         {{-- ユーザー情報 --}}
         <div class="user-info">
-<img
-  src="{{ $user->icon_image
-    ? asset('images/' . $user->icon_image)
-    : asset('images/icon1.png') }}"
->
+          <img
+            src="{{ $user->icon_image
+              ? asset('images/icons/' . $user->icon_image) {{-- icons フォルダに統一 --}}
+              : asset('images/icons/icon1.png')           {{-- デフォルトも icons --}}
+            }}"
+          >
           <span>{{ $user->username }}</span>
         </div>
 

@@ -20,13 +20,58 @@
         src="
         {{
           $follow->icon_image
-            ? (str_contains($follow->icon_image, 'icons/')
-                ? asset('storage/' . $follow->icon_image)
-                : asset('images/' . $follow->icon_image))
-            : asset('images/icon1.png')
+            ? asset('images/icons/' . $follow->icon_image) {{-- icons フォルダに統一 --}}
+            : asset('images/icons/icon1.png')             {{-- デフォルトも icons --}}
         }}"
         class="follow-icon"
       >
+    </a>
+  @endforeach
+</div>
+</div>
+
+  <!-- 投稿一覧 -->
+<div class="post-list-wrapper">
+  @foreach($posts as $post)
+      <!-- 投稿1件 -->
+      <div class="post-item">
+        <!-- ユーザーアイコン -->
+        <div class="post-user-icon">
+          <a href="{{ url('/profile/' . $post->user->id) }}">
+            <img
+              src="
+              {{
+                $post->user->icon_image
+                  ? asset('images/icons/' . $post->user->icon_image)  {{-- icons フォルダに統一 --}}
+                  : asset('images/icons/icon1.png')                  {{-- デフォルトも icons --}}
+              }}"
+            >
+          </a>
+        </div>
+
+        <!-- 投稿内容 -->
+        <div class="post-content">
+          <!-- ユーザー名 -->
+          <p class="post-username">
+            {{ $post->user->username }}
+          </p>
+          <!-- 投稿本文 -->
+          <p class="post-text">
+            {{ $post->post }}
+          </p>
+        </div>
+
+        <!-- 投稿日時 -->
+        <div class="post-right">
+          <span class="post-date">
+            {{ $post->created_at->format('Y-m-d H:i') }}
+          </span>
+        </div>
+      </div>
+  @endforeach
+</div>
+
+@endsection
     </a>
   @endforeach
 </div>

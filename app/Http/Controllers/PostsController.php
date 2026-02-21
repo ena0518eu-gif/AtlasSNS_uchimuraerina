@@ -64,9 +64,14 @@ class PostsController extends Controller
     public function update(Request $request, $id)
     {
         // =========================
-        // 150文字以上は保存不可（サーバー側制御）
+        // バリデーション（ここが超重要）
         // =========================
-        $postContent = mb_substr($request->post, 0, 150);
+        $request->validate([
+            'post' => 'required|max:150'
+        ], [
+            'post.required' => '投稿内容を入力してください',
+            'post.max' => '150文字以内で入力してください',
+        ]);
 
         // =========================
         // 自分の投稿のみ更新
@@ -74,7 +79,7 @@ class PostsController extends Controller
         Post::where('id', $id)
             ->where('user_id', auth()->id())
             ->update([
-                'post' => $postContent
+                'post' => $request->post
             ]);
 
         return redirect('/top');

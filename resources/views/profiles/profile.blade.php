@@ -16,7 +16,8 @@
 
       <!-- 左：ユーザーアイコン -->
       <div class="profile-icon-area">
-        <img src="{{ $user->icon_image ? asset('images/' . $user->icon_image) : asset('images/icon1.png') }}">
+        <!-- アイコン表示パスを icons フォルダに変更 -->
+        <img src="{{ $user->icon_image ? asset('images/icons/' . $user->icon_image) : asset('images/icons/icon1.png') }}">
       </div>
 
       <!-- 右：フォーム -->
