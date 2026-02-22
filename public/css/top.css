@@ -29,6 +29,7 @@
   gap: 15px;
   min-width: 0;
   /* ← 追加：flex崩れ防止 */
+  height: 100px;
 }
 
 /* アイコン */
@@ -36,6 +37,10 @@
   flex-shrink: 0;
   width: 60px;
   height: 60px;
+}
+
+.login-user-icon {
+  margin-bottom: 50px;
 }
 
 .post-user-icon img {
@@ -57,6 +62,7 @@
   font-size: 14px;
   background: transparent;
   outline: none;
+  margin-bottom: -40px;
 }
 
 /* 投稿ボタン */
@@ -66,6 +72,8 @@
   padding: 0;
   display: flex;
   align-items: center;
+  margin-right: 150px;
+  margin-top: 70px;
 }
 
 .post-submit img {
@@ -114,7 +122,7 @@
 }
 
 /* 右エリア */
-.post-side {
+.post-action {
   width: 160px;
   text-align: right;
   flex-shrink: 0;
@@ -134,6 +142,7 @@
   justify-content: flex-end;
   /* ← 右寄せ */
   margin-top: auto;
+  margin-bottom: -20px;
   /* ← 一番下へ押し下げる */
   gap: 10px;
   /* ← ボタン間隔 */
@@ -144,6 +153,8 @@
   font-size: 11px;
   color: #9a9a9a;
   margin-bottom: 70px;
+  margin-right: -150px;
+
   /* ← ボタンとの間隔を広げる */
 }
 

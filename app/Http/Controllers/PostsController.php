@@ -55,7 +55,7 @@ class PostsController extends Controller
 
         Post::create([
             'user_id' => auth()->id(),
-            'post' => $request,
+            'post' => $request->post,
         ]);
 
         return redirect()->back();

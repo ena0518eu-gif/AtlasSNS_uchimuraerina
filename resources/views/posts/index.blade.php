@@ -16,7 +16,7 @@
     <div class="post-input-area">
 
       <!-- ログインユーザーアイコン -->
-      <div class="post-user-icon">
+      <div class="post-user-icon login-user-icon" >
         <img src="
         {{
           Auth::user()->icon_image
@@ -81,7 +81,6 @@
       </div>
 
       <!-- 右端：日付＋ボタン -->
-      <div class="post-side">
 
         <div class="post-date">
           {{ $post->created_at }}
@@ -117,7 +116,7 @@
 
         @endif
 
-      </div>
+
 
     </div>
 
