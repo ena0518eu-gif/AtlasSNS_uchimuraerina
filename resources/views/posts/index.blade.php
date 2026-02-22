@@ -69,54 +69,56 @@
         <img src="
         {{
           $post->user->icon_image
-            ? asset('images/icons/' . $post->user->icon_image)  {{-- icons フォルダに統一 --}}
-            : asset('images/icons/icon1.png')                    {{-- デフォルトも icons --}}
+            ? asset('images/icons/' . $post->user->icon_image)
+            : asset('images/icons/icon1.png')
         }}">
       </div>
 
-      <!-- 中央：本文エリア -->
-      <div class="post-main">
-        <p class="post-username">{{ $post->user->username }}</p>
-        <p class="post-text">{{ $post->post }}</p>
+      <div class="post-content">
+
+        <!-- 中央：本文エリア -->
+        <div class="post-main">
+
+          <!-- 1行目：名前＋日付 -->
+          <div class="post-header">
+            <p class="post-username">{{ $post->user->username }}</p>
+            <div class="post-date">
+              {{ $post->created_at }}
+            </div>
+          </div>
+
+          <!-- 2行目：投稿内容 -->
+          <p class="post-text">{{ $post->post }}</p>
+
+          <!-- 3行目：編集削除ボタン -->
+          @if(Auth::id() === $post->user_id)
+          <div class="post-action">
+
+            <button
+              type="button"
+              class="edit-btn js-edit-open"
+              data-id="{{ $post->id }}"
+              data-post="{{ e(str_replace(["\r\n", "\r", "\n"], '', $post->post)) }}"
+            >
+              <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
+              <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
+            </button>
+
+            <button
+              type="button"
+              class="delete-btn js-delete-open"
+              data-id="{{ $post->id }}"
+            >
+              <img src="{{ asset('images/trash.png') }}" class="delete-icon normal">
+              <img src="{{ asset('images/trash-h.png') }}" class="delete-icon hover">
+            </button>
+
+          </div>
+          @endif
+
+        </div>
+
       </div>
-
-      <!-- 右端：日付＋ボタン -->
-
-        <div class="post-date">
-          {{ $post->created_at }}
-        </div>
-
-        @if(Auth::id() === $post->user_id)
-
-        <!-- 編集・削除ボタン -->
-        <div class="post-action">
-
-          <!-- 編集ボタン（JS用） -->
-          <button
-            type="button"
-            class="edit-btn js-edit-open"
-            data-id="{{ $post->id }}"
-            data-post="{{ e(str_replace(["\r\n", "\r", "\n"], '', $post->post)) }}"
-          >
-            <img src="{{ asset('images/edit.png') }}" class="edit-icon normal">
-            <img src="{{ asset('images/edit_h.png') }}" class="edit-icon hover">
-          </button>
-
-          <!-- 削除ボタン（JS用） -->
-          <button
-            type="button"
-            class="delete-btn js-delete-open"
-            data-id="{{ $post->id }}"
-          >
-            <img src="{{ asset('images/trash.png') }}" class="delete-icon normal">
-            <img src="{{ asset('images/trash-h.png') }}" class="delete-icon hover">
-          </button>
-
-        </div>
-
-        @endif
-
-
 
     </div>
 
@@ -131,7 +133,6 @@
 
   <div class="modal-content">
 
-    {{-- ★ 追加：JS閉じる判定用 --}}
     <div class="js-modal-close" style="display:none;"></div>
 
     <form id="edit-form" method="POST">
@@ -140,10 +141,8 @@
 
       <textarea id="edit-post" name="post" ></textarea>
 
-      {{-- 編集エラー表示 --}}
       <p class="edit-error"></p>
 
-      <!-- ▼ ここだけ変更（テキストボタン削除 → アイコン送信に変更） -->
       <div class="modal-icon-submit">
         <button type="submit" class="modal-submit-btn">
           <img src="{{ asset('images/edit.png') }}">
@@ -160,7 +159,6 @@
 <div id="delete-modal" class="modal-overlay">
 
   <div class="modal-content">
-
 
     <div class="js-modal-close" style="display:none;"></div>
 

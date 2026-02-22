@@ -106,10 +106,26 @@
   flex: 1;
   position: relative;
   min-width: 0;
+  display: flex;
+  /* 横並び */
+  flex-direction: column;
+  width: 100%;
+  /* ← 追加 */
+}
+
+/* 1行目（名前＋日付） */
+.post-header {
+  display: flex;
+  justify-content: space-between;
+  /* ← 等間隔に変更 */
+  align-items: center;
+  margin-bottom: 8px;
+  width: 100%;
+  /* ← 追加 */
 }
 
 .post-username {
-  margin-bottom: 6px;
+  margin-bottom: 0px;
   font-size: 14px;
 }
 
@@ -123,39 +139,22 @@
 
 /* 右エリア */
 .post-action {
-  width: 160px;
-  text-align: right;
-  flex-shrink: 0;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  position: relative;
-  z-index: 5;
-  /* ← 追加：クリック不能対策 */
-}
-
-/* ★ 編集削除を右下固定（横並びのまま） */
-.post-action {
   display: flex;
   flex-direction: row;
   /* ← 横並び維持 */
   justify-content: flex-end;
   /* ← 右寄せ */
-  margin-top: auto;
-  margin-bottom: -20px;
-  /* ← 一番下へ押し下げる */
   gap: 10px;
-  /* ← ボタン間隔 */
+  margin-top: 10px;
+  width: 100%;
+  z-index: 5;
+  /* ← 追加：クリック不能対策 */
 }
 
 /* 日付 */
 .post-date {
   font-size: 11px;
   color: #9a9a9a;
-  margin-bottom: 70px;
-  margin-right: -150px;
-
-  /* ← ボタンとの間隔を広げる */
 }
 
 /* 編集削除ボタン本体 */
@@ -323,7 +322,7 @@
   transform: scale(1.1);
 }
 
-/*  1行用に修正 */
+/*  1行用*/
 .post-form-inner textarea {
   flex: 1;
   width: 100%;
@@ -335,4 +334,9 @@
   background: transparent;
   outline: none;
   box-sizing: border-box;
+}
+
+.post-content {
+  flex: 1;
+  min-width: 0;
 }
