@@ -1,12 +1,12 @@
 <!-- サイドバー中身 -->
 <div id="confirm">
 
-  <!-- 追加：○○さんの ->
+  <!-- 追加：○○さんの -->
   <p class="user-sidebar-title">
     {{ Auth::user()->username }}さんの
   </p>
 
-  <フォロー数 -->
+  <!-- <フォロー数 -->
   <div class="follow-block">
     <div class="follow-row">
       <p>フォロー数</p>
