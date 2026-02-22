@@ -50,21 +50,32 @@
 /* 中央：ユーザー情報 */
 .profile-info {
   flex: 1;
-}
-
-/* ユーザー名・自己紹介 共通 */
-.profile-name,
-.profile-bio {
   display: flex;
+  flex-direction: column;
   gap: 30px;
-  margin-bottom: 8px;
   font-size: 15px;
 }
 
-/* ラベル  */
+/* ユーザー名 */
+.profile-name {
+  display: flex;
+}
+
+/* 自己紹介 */
+.profile-bio {
+  display: flex;
+}
+
+/* ラベル */
 .profile-label {
-  width: 90px;
   color: #000;
+  width: 80px;
+  flex-shrink: 0;
+  text-align: left;
+  /* ← 左端揃え */
+  text-align: justify;
+  text-align-last: justify;
+  margin-right: 80px;
 }
 
 /* 値 */
@@ -72,13 +83,15 @@
   color: #000;
   font-weight: 400;
   white-space: pre-wrap;
-  /* 改行反映 */
+  word-break: break-word;
 }
 
 /* 右：フォローボタン */
 .profile-follow-btn {
   width: 160px;
-  text-align: right;
+  display: flex;
+  align-items: flex-start;
+  padding-top: 48px;
 }
 
 /* フォロー */
@@ -89,6 +102,7 @@
   padding: 9px 18px;
   border-radius: 6px;
   cursor: pointer;
+  height: 36px;
 }
 
 /* フォロー解除 */
@@ -99,6 +113,7 @@
   padding: 9px 18px;
   border-radius: 6px;
   cursor: pointer;
+  height: 36px;
 }
 
 
@@ -108,11 +123,9 @@
 .post-item {
   display: flex;
   align-items: flex-start;
-  /* 上揃え */
   padding: 22px 0;
   border-bottom: 1px solid #f0f0f0;
   padding-right: 60px;
-  /* 右余白追加 */
 }
 
 .post-user-icon {
@@ -142,7 +155,6 @@
   font-size: 14px;
   color: #333;
   white-space: pre-wrap;
-  /* 改行反映 */
   word-break: break-word;
 }
 
@@ -152,9 +164,7 @@
   font-size: 13px;
   color: #999;
   margin-top: 2px;
-  /* 少し上に */
   margin-right: -15px;
-  /* ほんの少し右へ戻す */
 }
 
 .post-date {
