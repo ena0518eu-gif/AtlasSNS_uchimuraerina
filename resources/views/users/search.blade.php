@@ -39,9 +39,6 @@
     <!-- 区切り線 -->
     <div class="search-line"></div>
 
-    <!-- {{-- 検索ワード表示 --}}
-    <h3>検索ワード: {{ $keyword ?? '' }}</h3> -->
-
     {{-- 検索結果一覧（中央寄せ） --}}
     <div class="search-result">
 

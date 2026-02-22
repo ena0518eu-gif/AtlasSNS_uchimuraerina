@@ -26,50 +26,41 @@
               method="POST"
               enctype="multipart/form-data">
           @csrf
+          @method('PUT')  <!-- ここを追加 -->
 
           <!-- ユーザー名 -->
           <div class="form-group">
             <label>ユーザー名</label>
             <input type="text" name="username" value="{{ old('username', $user->username) }}">
-            @error('username')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('username') }}</span>
           </div>
 
           <!-- メールアドレス -->
           <div class="form-group">
             <label>メールアドレス</label>
             <input type="email" name="email" value="{{ old('email', $user->email) }}">
-            @error('email')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('email') }}</span>
           </div>
 
           <!-- パスワード -->
           <div class="form-group">
             <label>パスワード</label>
             <input type="password" name="new_password">
-            @error('new_password')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('new_password') }}</span>
           </div>
 
           <!-- パスワード確認 -->
           <div class="form-group">
             <label>パスワード確認</label>
             <input type="password" name="new_password_confirmation">
-            @error('new_password_confirmation')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('new_password_confirmation') }}</span>
           </div>
 
           <!-- 自己紹介 -->
           <div class="form-group textarea-group">
             <label>自己紹介</label>
             <textarea name="bio">{{ old('bio', $user->bio) }}</textarea>
-            @error('bio')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('bio') }}</span>
           </div>
 
           <!-- アイコン画像 -->
@@ -86,9 +77,7 @@
               <span class="file-text">ファイルを選択</span>
             </div>
 
-            @error('icon_image')
-              <p class="error-message">{{ $message }}</p>
-            @enderror
+            <span class="error-message">{{ $errors->first('icon_image') }}</span>
 
           </div>
 

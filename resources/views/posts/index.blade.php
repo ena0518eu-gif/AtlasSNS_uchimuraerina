@@ -34,7 +34,6 @@
           <textarea
             name="post"
             rows="1"
-            maxlength="150"
             placeholder="投稿内容を入力してください"
           >{{ old('post') }}</textarea>
 
@@ -140,7 +139,7 @@
       @csrf
       @method('PUT')
 
-      <textarea id="edit-post" name="post" maxlength="150"></textarea>
+      <textarea id="edit-post" name="post" ></textarea>
 
       {{-- 編集エラー表示 --}}
       <p class="edit-error"></p>

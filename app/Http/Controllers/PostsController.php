@@ -48,11 +48,14 @@ class PostsController extends Controller
         // =========================
         // 150文字以上は保存不可（サーバー側制御）
         // =========================
-        $postContent = mb_substr($request->post, 0, 150);
+        // $postContent = mb_substr($request->post, 0, 150);
+
+
+        // ここにエラーメッセージ（バリエーションメッセージ）かく
 
         Post::create([
             'user_id' => auth()->id(),
-            'post' => $postContent,
+            'post' => $request,
         ]);
 
         return redirect()->back();
@@ -61,17 +64,17 @@ class PostsController extends Controller
     // =========================
     // 投稿更新（編集）
     // =========================
-    public function update(Request $request, $id)
+    public function update(PostRequest $request, $id)
     {
         // =========================
         // バリデーション（ここが超重要）
         // =========================
-        $request->validate([
-            'post' => 'required|max:150'
-        ], [
-            'post.required' => '投稿内容を入力してください',
-            'post.max' => '150文字以内で入力してください',
-        ]);
+        // $request->validate([
+        //     'post' => 'required|max:150'
+        // ], [
+        //     'post.required' => '投稿内容を入力してください',
+        //     'post.max' => '150文字以内で入力してください',
+        // ]);
 
         // =========================
         // 自分の投稿のみ更新

@@ -22,6 +22,8 @@ class ProfileController extends Controller
         // バリデーション
         // =========================
         // ※ ProfileUpdateRequest にて自動実行
+        // 追記：NewPassword は必須・英数字のみ・8文字以上20文字以内
+        // ProfileUpdateRequest 内で rules() に記述
 
         $user = Auth::user();
 
@@ -35,7 +37,10 @@ class ProfileController extends Controller
         // =========================
         // パスワード更新
         // =========================
-        $user->password = bcrypt($request->new_password);
+        // 入力がある場合のみ更新
+        if ($request->filled('new_password')) {   // ← ここを追加
+            $user->password = bcrypt($request->new_password);
+        }
 
         // =========================
         // アイコン画像

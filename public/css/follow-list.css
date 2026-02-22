@@ -1,30 +1,45 @@
 @charset "utf-8";
 
+/* 共通左余白 */
+:root {
+  --left-space: 100px;
+}
+
 /* タイトル */
 .follow-title {
   font-size: 20px;
   /* font-weight: bold; */
-  margin: 20px 40px;
+  margin: 0;
   white-space: nowrap;
-  /* ←見出しを改行させない */
+  /* 見出しを改行させない */
 }
 
 /* タイトル＋アイコン横並び */
 .follow-header {
   display: flex;
-  align-items: center;
-  gap: 30px;
-
+  align-items: flex-start;
+  /* ← 戻す */
+  gap: 40px;
   margin-top: 20px;
   border-bottom: 3px solid #ccc;
-  padding: 0 0 15px;
+  padding: 0 40px 15px var(--left-space);
 }
 
-/* アイコン10個で改行させる */
+/* タイトルとアイコンを横並び */
+.follow-header-inner {
+  display: contents;
+  /* ← 中の要素を直接横並びにする */
+  /* ← ここでタイトルとアイコンの間隔を調整 */
+}
+
+/* アイコン複数行にする */
 .follow-icon-area {
-  display: grid;
-  grid-template-columns: repeat(10, 60px);
+  display: flex;
+  flex-wrap: wrap;
+  /* ← 折り返す */
   gap: 12px;
+  max-width: 720px;
+  /* 60px × 10 + gap調整 */
 }
 
 /* アイコン */
@@ -52,6 +67,7 @@
   display: flex;
   align-items: flex-start;
   padding: 15px 0;
+  padding-left: var(--left-space);
   border-bottom: 1px solid #e0e0e0;
 
   max-width: 100%;
@@ -62,10 +78,10 @@
 
 /* ユーザーアイコン */
 .post-user-icon {
-  margin-right: 15px;
   flex-shrink: 0;
-
-  margin-left: 100px;
+  margin-left: 0;
+  /* ← ここを削除（重要） */
+  width: 60px;
 }
 
 .post-user-icon img {
@@ -80,14 +96,17 @@
   flex: 1;
   min-width: 0;
 
-  padding-right: 0;
+  margin-left: 20px;
+  /* ← テキスト開始位置をここで決める */
 }
 
+/* ユーザー名 */
 .post-username {
-  /* font-weight: bold; */
+  margin: 0;
   margin-bottom: 5px;
 }
 
+/* 投稿本文 */
 .post-text {
   color: #333;
   line-height: 1.5;
@@ -95,15 +114,15 @@
   word-break: break-word;
   white-space: pre-wrap;
   /* 追加：改行を反映させる */
+
+  margin: 0;
 }
 
 /* 右側：投稿日*/
 .post-right {
   position: absolute;
   top: 15px;
-
   right: 20px;
-
   white-space: nowrap;
 }
 
