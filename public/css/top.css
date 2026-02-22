@@ -126,6 +126,19 @@
   /* ← 追加：クリック不能対策 */
 }
 
+/* ★ 編集削除を右下固定（横並びのまま） */
+.post-action {
+  display: flex;
+  flex-direction: row;
+  /* ← 横並び維持 */
+  justify-content: flex-end;
+  /* ← 右寄せ */
+  margin-top: auto;
+  /* ← 一番下へ押し下げる */
+  gap: 10px;
+  /* ← ボタン間隔 */
+}
+
 /* 日付 */
 .post-date {
   font-size: 11px;

@@ -44,6 +44,11 @@ class UsersController extends Controller
             $query->orderBy('created_at', 'desc'); // 投稿順を新しい順に並べる
         }])->find($id);
 
+        // ユーザーが見つからない場合
+        if (!$user) {
+            return abort(404, 'ユーザーが見つかりません');
+        }
+
         // ログインユーザーが相手ユーザーをフォローしているか確認
         $isFollowed = Auth::check() ? Auth::user()->follows()->where('followed_id', $id)->exists() : false;
 

@@ -5,7 +5,7 @@
   width: 300px;
   min-width: 300px;
   /* ← 追加（flex潰れ防止） */
-  border-left: 3px solid #cfcfcf;
+  border-left: 2px solid #999999;
   background: #ffffff;
   padding: 40px 25px;
   box-sizing: border-box;
@@ -41,8 +41,9 @@
 
 /* 区切り線 */
 .under-line {
-  height: 3px;
-  background: #e5e5e5;
+  height: 2px;
+  background: #cccccc;
+  ;
   margin: 35px -25px;
 }
 

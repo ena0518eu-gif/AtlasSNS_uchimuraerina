@@ -155,5 +155,10 @@
 .error-message {
   color: #e74c3c;
   font-size: 13px;
-  margin-top: 6px;
+  margin-top: 0;
+  /* 余白削除 */
+  display: inline;
+  /* インライン表示 */
+  white-space: nowrap;
+  /* 改行禁止 */
 }

@@ -28,10 +28,19 @@ class ProfileUpdateRequest extends FormRequest
             ],
 
             // 新しいパスワード
-            'new_password' => 'required|alpha_num|min:8|max:20',
+            'new_password' => [
+                'required',                   // ← 必須に変更
+                'string',
+                'min:8',
+                'max:20',
+                'regex:/^(?=.*[a-zA-Z])(?=.*[0-9])[a-zA-Z0-9]+$/', // 英字と数字の両方を必須
+            ],
 
             // パスワード確認
-            'new_password_confirmation' => 'required|alpha_num|min:8|max:20|same:new_password',
+            'new_password_confirmation' => [
+                'required',                  // ← 必須に変更
+                'same:new_password',         // 最後に same
+            ],
 
             // 自己紹介
             'bio' => 'nullable|max:150',
@@ -64,18 +73,15 @@ class ProfileUpdateRequest extends FormRequest
             // =====================
             // NewPassword
             // =====================
-            'new_password.required' => '入力必須です',
-            'new_password.alpha_num' => '英数字のみで入力してください',
+            'new_password.required' => 'パスワードは必須です',
             'new_password.min' => '8文字以上で入力してください',
             'new_password.max' => '20文字以内で入力してください',
+            'new_password.regex' => '英数字のみで入力してください',
 
             // =====================
             // NewPasswordConfirmation
             // =====================
-            'new_password_confirmation.required' => '入力必須です',
-            'new_password_confirmation.alpha_num' => '英数字のみで入力してください',
-            'new_password_confirmation.min' => '8文字以上で入力してください',
-            'new_password_confirmation.max' => '20文字以内で入力してください',
+            'new_password_confirmation.required' => 'パスワード確認は必須です',
             'new_password_confirmation.same' => 'パスワードが一致していません',
 
             // =====================

@@ -10,27 +10,26 @@
   <!-- フォロワー一覧 -->
 
 <div class="follow-header">
-  <h2 class="follow-title">フォロワーリスト</h2>
+  <div class="follow-header-inner">
+    <h2 class="follow-title">フォロワーリスト</h2>
 
-  <!-- フォロワーアイコン一覧（横並び） -->
-  <div class="follow-icon-area">
-    @foreach($followers as $follower)
-      <!-- ユーザーアイコン（プロフィールリンク） -->
-      <a href="{{ url('/profile/' . $follower->id) }}">
-        <img
-          src="
-          {{
-            $follower->icon_image
-              ? asset('images/icons/' . $follower->icon_image)  {{-- icons フォルダに統一 --}}
-              : asset('images/icons/icon1.png')                {{-- デフォルトも icons --}}
-          }}"
-          class="follow-icon"
-        >
-      </a>
-    @endforeach
+    <!-- フォロワーアイコン一覧（横並び） -->
+    <div class="follow-icon-area">
+      @foreach($followers as $follower)
+        <a href="{{ url('/profile/' . $follower->id) }}">
+          <img
+            src="{{
+              $follower->icon_image
+                ? asset('images/icons/' . $follower->icon_image)
+                : asset('images/icons/icon1.png')
+            }}"
+            class="follow-icon"
+          >
+        </a>
+      @endforeach
+    </div>
   </div>
 </div>
-
   <!-- 投稿一覧 -->
 <div class="post-list-wrapper">
   @foreach($posts as $post)
@@ -40,8 +39,7 @@
         <div class="post-user-icon">
           <a href="{{ url('/profile/' . $post->user->id) }}">
             <img
-              src="
-              {{
+              src="{{
                 $post->user->icon_image
                   ? asset('images/icons/' . $post->user->icon_image)  {{-- icons フォルダに統一 --}}
                   : asset('images/icons/icon1.png')                    {{-- デフォルトも icons --}}
@@ -54,11 +52,11 @@
         <div class="post-content">
           <!-- ユーザー名 -->
           <p class="post-username">
-            {{ $post->user->username }}
+{{ $post->user->username }}
           </p>
           <!-- 投稿本文 -->
           <p class="post-text">
-            {{ $post->post }}
+{{ $post->post }}
           </p>
         </div>
 
