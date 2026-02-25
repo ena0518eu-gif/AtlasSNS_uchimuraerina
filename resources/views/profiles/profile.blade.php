@@ -64,23 +64,22 @@
           </div>
 
           <!-- アイコン画像 -->
-          <div class="form-group">
-            <label>アイコン画像</label>
+<!-- アイコン画像 -->
+<div class="form-group file-group">
+  <label>アイコン画像</label>
 
-            <div class="file-box">
-              <input
-                type="file"
-                name="icon_image"
-                accept=".jpg,.jpeg,.png,.bmp,.gif,.svg"
-                class="file-input"
-              >
-              <span class="file-text">ファイルを選択</span>
-            </div>
+  <div class="file-box">
+    <input
+      type="file"
+      name="icon_image"
+      accept=".jpg,.jpeg,.png,.bmp,.gif,.svg"
+      class="file-input"
+    >
+    <span class="file-text">ファイルを選択</span>
+  </div>
 
-            <span class="error-message">{{ $errors->first('icon_image') }}</span>
-
-          </div>
-
+  <span class="error-message">{{ $errors->first('icon_image') }}</span>
+</div>
           <!-- 更新ボタン -->
           <div class="form-btn">
             <button type="submit" class="update-btn">更新</button>
